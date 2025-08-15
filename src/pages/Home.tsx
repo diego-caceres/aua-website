@@ -20,7 +20,7 @@ const Home = () => {
         </div>
       </div>
       <div className="container mx-auto px-6 py-12">
-        <section className="mb-16">
+        <section id="sobre-nosotros" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Sobre la AUA
           </h2>
@@ -44,7 +44,7 @@ const Home = () => {
             </p>
           </div>
         </section>
-        <section className="mb-16">
+        <section id="apnea" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             ¿Qué es la Apnea?
           </h2>
@@ -74,6 +74,90 @@ const Home = () => {
             <Link to="/asociate" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
               ¡Únete a la AUA!
             </Link>
+          </div>
+        </section>
+        
+        <section id="actividades" className="mb-16">
+          <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
+            Nuestras Actividades
+          </h2>
+          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Cursos de Formación</h3>
+                <p className="mb-4">
+                  Ofrecemos cursos certificados por AIDA para todos los niveles, desde principiantes hasta instructores avanzados.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Entrenamientos</h3>
+                <p className="mb-4">
+                  Sesiones regulares de entrenamiento en piscina y aguas abiertas con instructores calificados.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Competiciones</h3>
+                <p className="mb-4">
+                  Participación en competiciones nacionales e internacionales representando a Uruguay.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Eventos Sociales</h3>
+                <p className="mb-4">
+                  Organizamos encuentros, charlas y actividades para fortalecer la comunidad apneista.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="asociate" className="mb-16">
+          <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
+            Únete a la AUA
+          </h2>
+          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg">
+            <p className="mb-4">
+              ¿Te interesa la apnea? ¡Te invitamos a formar parte de nuestra comunidad! 
+              Como miembro de la AUA tendrás acceso a:
+            </p>
+            <ul className="list-disc list-inside mb-6 space-y-2">
+              <li>Descuentos en cursos y entrenamientos</li>
+              <li>Acceso prioritario a eventos y competiciones</li>
+              <li>Certificaciones oficiales AIDA</li>
+              <li>Comunidad de apneistas experimentados</li>
+              <li>Equipamiento especializado para entrenamientos</li>
+            </ul>
+            <div className="text-center">
+              <Link to="/contacto" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+                Contáctanos para más información
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="galeria" className="mb-16">
+          <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
+            Galería de Imágenes
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+              <img src="/WhatsApp_Image_2025-07-27_at_13.34.05.jpg" alt="Apnea de profundidad con cuerda guía" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <div className="p-4">
+                <p className="text-lg">Apnea de profundidad con cuerda guía</p>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+              <img src="/WhatsApp_Image_2025-07-27_at_13.35.06.jpg" alt="Exploración submarina en grupo" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <div className="p-4">
+                <p className="text-lg">Exploración submarina en grupo</p>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+              <img src="/image00063.jpg" alt="Entrenamiento en piscina" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <div className="p-4">
+                <p className="text-lg">Entrenamiento en piscina</p>
+              </div>
+            </div>
           </div>
         </section>
       </div>

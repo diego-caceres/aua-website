@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu as MenuIcon } from 'lucide-react';
+
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  const mainContent = document.querySelector('main');
+  if (element && mainContent) {
+    // Get the actual header height including mobile menu if open
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const elementTop = element.offsetTop - headerHeight - 20; // Extra padding
+    mainContent.scrollTo({ top: elementTop, behavior: 'smooth' });
+  }
+};
+
+const scrollToTop = () => {
+  const mainContent = document.querySelector('main');
+  if (mainContent) {
+    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
+
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return <header className="bg-blue-950 text-white">
@@ -29,34 +49,70 @@ const Header = () => {
           <nav>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToTop();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   Inicio
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/sobre-nosotros" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToSection('sobre-nosotros');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   Sobre Nosotros
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/apnea" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToSection('apnea');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   ¿Qué es la Apnea?
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/actividades" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToSection('actividades');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   Actividades
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/galeria" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToSection('galeria');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   Galería
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/asociate" className="block py-1 px-2 hover:bg-blue-800 rounded">
+                <button 
+                  onClick={() => {
+                    scrollToSection('asociate');
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
                   Asociate
-                </Link>
+                </button>
               </li>
             </ul>
           </nav>

@@ -32,9 +32,21 @@ const ImageCarousel = () => {
           <p className="text-xl font-semibold mb-2">
             {images[currentIndex].caption}
           </p>
-          <Link to="/galeria" className="inline-block text-blue-300 hover:text-blue-200 underline">
+          <button 
+            onClick={() => {
+              const element = document.getElementById('galeria');
+              const mainContent = document.querySelector('main');
+              if (element && mainContent) {
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const elementTop = element.offsetTop - headerHeight - 20;
+                mainContent.scrollTo({ top: elementTop, behavior: 'smooth' });
+              }
+            }}
+            className="inline-block text-blue-300 hover:text-blue-200 underline"
+          >
             Ver más imágenes
-          </Link>
+          </button>
         </div>
         <button onClick={goToPrevious} className="absolute top-1/2 left-4 -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full text-white hover:bg-opacity-70 transition-all">
           <ChevronLeft size={24} />
