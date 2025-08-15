@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import ScrollBackground from './components/ScrollBackground';
 import Home from './pages/Home';
 export function App() {
   return <Router>
-      <div className="flex flex-col h-screen bg-gradient-to-b from-blue-900 to-blue-950">
+      <div className="flex flex-col h-screen relative">
+        <ScrollBackground />
         <Header />
         <div className="flex flex-grow overflow-hidden">
           <Sidebar />
-          <main className="flex-grow overflow-y-auto">
+          <main className="flex-grow overflow-y-auto relative z-10">
             <Routes>
               <Route path="/" element={<Home />} />
             </Routes>

@@ -2,7 +2,7 @@ import React from 'react';
 import ImageCarousel from '../components/ImageCarousel';
 import { Link } from 'react-router-dom';
 const Home = () => {
-  return <div className="text-white">
+  return <div className="text-white relative">
       <div className="relative h-96 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: "url('https://uploadthingy.s3.us-west-1.amazonaws.com/c4AkcrZFsUv7y3Z3sBkNga/WhatsApp_Image_2025-07-27_at_13.34.05.jpg')",
@@ -24,7 +24,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Sobre la AUA
           </h2>
-          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg">
+          <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <p className="mb-4">
               La Asociación Uruguaya de Apneistas (AUA) es una organización sin
               fines de lucro dedicada a promocionar la apnea recreativa y de
@@ -48,7 +48,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             ¿Qué es la Apnea?
           </h2>
-          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg mb-6">
+          <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg mb-6">
             <p className="mb-4">
               La apnea es la práctica de contener la respiración bajo el agua,
               explorando los límites del cuerpo humano en un entorno acuático.
@@ -81,7 +81,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Nuestras Actividades
           </h2>
-          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg">
+          <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-xl font-semibold mb-3">Cursos de Formación</h3>
@@ -115,7 +115,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Únete a la AUA
           </h2>
-          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-lg">
+          <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <p className="mb-4">
               ¿Te interesa la apnea? ¡Te invitamos a formar parte de nuestra comunidad! 
               Como miembro de la AUA tendrás acceso a:
@@ -140,19 +140,19 @@ const Home = () => {
             Galería de Imágenes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
               <img src="/WhatsApp_Image_2025-07-27_at_13.34.05.jpg" alt="Apnea de profundidad con cuerda guía" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
               <div className="p-4">
                 <p className="text-lg">Apnea de profundidad con cuerda guía</p>
               </div>
             </div>
-            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
               <img src="/WhatsApp_Image_2025-07-27_at_13.35.06.jpg" alt="Exploración submarina en grupo" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
               <div className="p-4">
                 <p className="text-lg">Exploración submarina en grupo</p>
               </div>
             </div>
-            <div className="overflow-hidden rounded-lg bg-blue-900 bg-opacity-50">
+            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
               <img src="/image00063.jpg" alt="Entrenamiento en piscina" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
               <div className="p-4">
                 <p className="text-lg">Entrenamiento en piscina</p>
