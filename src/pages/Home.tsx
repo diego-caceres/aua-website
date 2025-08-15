@@ -71,7 +71,7 @@ const Home = () => {
           </div>
           <ImageCarousel />
           <div className="text-center mt-6">
-            <Link to="/asociate" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+            <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
               ¡Únete a la AUA!
             </Link>
           </div>
@@ -128,7 +128,7 @@ const Home = () => {
               <li>Equipamiento especializado para entrenamientos</li>
             </ul>
             <div className="text-center">
-              <Link to="/contacto" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+              <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
                 Contáctanos para más información
               </Link>
             </div>

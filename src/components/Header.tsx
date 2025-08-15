@@ -37,7 +37,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link to="/contacto" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-4">
+          <Link to="/" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-4">
             Contacto
           </Link>
           <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
