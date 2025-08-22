@@ -1,55 +1,67 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu as MenuIcon } from 'lucide-react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu as MenuIcon } from "lucide-react";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
-  const mainContent = document.querySelector('main');
+  const mainContent = document.querySelector("main");
   if (element && mainContent) {
     // Get the actual header height including mobile menu if open
-    const header = document.querySelector('header');
+    const header = document.querySelector("header");
     const headerHeight = header ? header.offsetHeight : 80;
     const elementTop = element.offsetTop - headerHeight - 20; // Extra padding
-    mainContent.scrollTo({ top: elementTop, behavior: 'smooth' });
+    mainContent.scrollTo({ top: elementTop, behavior: "smooth" });
   }
 };
 
 const scrollToTop = () => {
-  const mainContent = document.querySelector('main');
+  const mainContent = document.querySelector("main");
   if (mainContent) {
-    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  return <header className="bg-blue-950 text-white">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+  return (
+    <header className="bg-blue-950 text-white">
+      <div className="container px-8  py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <img src="/WhatsApp_Image_2025-07-27_at_11.06.30.jpg" alt="AUA Logo" className="h-14 mr-2" />
-            <div className="hidden md:block">
-              <h1 className="text-xl font-semibold">
+            <div className="flex items-start flex-col">
+              <img
+                src="/images/aua_white.png"
+                alt="AUA Logo"
+                className="h-14 mr-2"
+              />
+              <p className="text-xs text-blue-300">Filial AIDA Uruguay</p>
+              <h1 className="text-xl font-semibold hidden">
                 Asociación Uruguaya de Apneistas
               </h1>
-              <p className="text-xs text-blue-300">Filial AIDA Uruguay</p>
             </div>
           </Link>
         </div>
         <div className="flex items-center">
-          <Link to="/" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-4">
+          <Link
+            to="/"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-4"
+          >
             Contacto
           </Link>
-          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button
+            className="md:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             <MenuIcon size={24} />
           </button>
         </div>
       </div>
-      {mobileMenuOpen && <div className="md:hidden bg-blue-900 px-4 py-2">
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-blue-900 px-4 py-2">
           <nav>
             <ul className="space-y-2">
               <li>
-                <button 
+                <button
                   onClick={() => {
                     scrollToTop();
                     setMobileMenuOpen(false);
@@ -60,9 +72,9 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    scrollToSection('sobre-nosotros');
+                    scrollToSection("sobre-nosotros");
                     setMobileMenuOpen(false);
                   }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
@@ -71,9 +83,9 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    scrollToSection('apnea');
+                    scrollToSection("apnea");
                     setMobileMenuOpen(false);
                   }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
@@ -82,9 +94,9 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    scrollToSection('actividades');
+                    scrollToSection("actividades");
                     setMobileMenuOpen(false);
                   }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
@@ -93,9 +105,9 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    scrollToSection('galeria');
+                    scrollToSection("galeria");
                     setMobileMenuOpen(false);
                   }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
@@ -104,9 +116,9 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => {
-                    scrollToSection('asociate');
+                    scrollToSection("asociate");
                     setMobileMenuOpen(false);
                   }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
@@ -116,7 +128,9 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-        </div>}
-    </header>;
+        </div>
+      )}
+    </header>
+  );
 };
 export default Header;
