@@ -5,6 +5,21 @@ import { Link } from "react-router-dom";
 const joinAUALink =
   "https://docs.google.com/forms/d/e/1FAIpQLSdawS6ObJo0YzBscJBTUuL26uJ2wXrtrDmfV3NL2RAw0uuEAA/viewform";
 
+const imageSections = {
+  "apnea-profundidad": {
+    title: "Apnea de Profundidad",
+    images: ["/WhatsApp_Image_2025-07-27_at_13.34.05.jpg"]
+  },
+  "exploracion-submarina": {
+    title: "Exploración Submarina",
+    images: ["/WhatsApp_Image_2025-07-27_at_13.35.06.jpg"]
+  },
+  "entrenamiento": {
+    title: "Entrenamiento",
+    images: ["/image00063.jpg"]
+  }
+};
+
 const Home = () => {
   return (
     <div className="text-white relative">
