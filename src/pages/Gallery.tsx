@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const imageSections = {
@@ -27,6 +27,10 @@ const imageSections = {
 };
 
 const Gallery = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
