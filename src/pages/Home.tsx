@@ -163,36 +163,18 @@ const Home = () => {
             Galería de Imágenes
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img
-                src="/WhatsApp_Image_2025-07-27_at_13.34.05.jpg"
-                alt="Apnea de profundidad con cuerda guía"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-4">
-                <p className="text-lg">Apnea de profundidad con cuerda guía</p>
+            {Object.entries(imageSections).map(([sectionId, section]) => (
+              <div key={sectionId} className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
+                <img
+                  src={section.images[0]}
+                  alt={section.title}
+                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-4">
+                  <p className="text-lg">{section.title}</p>
+                </div>
               </div>
-            </div>
-            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img
-                src="/WhatsApp_Image_2025-07-27_at_13.35.06.jpg"
-                alt="Exploración submarina en grupo"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-4">
-                <p className="text-lg">Exploración submarina en grupo</p>
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img
-                src="/image00063.jpg"
-                alt="Entrenamiento en piscina"
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-4">
-                <p className="text-lg">Entrenamiento en piscina</p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </div>
