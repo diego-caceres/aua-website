@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-const images = [{
-  url: "/WhatsApp_Image_2025-07-27_at_13.34.05.jpg",
-  caption: 'Apnea de profundidad con cuerda guía'
-}, {
-  url: "/WhatsApp_Image_2025-07-27_at_13.35.06.jpg",
-  caption: 'Exploración submarina en grupo'
-}, {
-  url: "/image00063.jpg",
-  caption: 'Entrenamiento en piscina'
-}];
+import { imageSections } from '../constants/imageSections';
+
+const images = [
+  {
+    url: imageSections["apnea-profundidad"].images[0],
+    caption: 'Apnea de profundidad con cuerda guía'
+  },
+  {
+    url: imageSections["exploracion-submarina"].images[0],
+    caption: 'Exploración submarina en grupo'
+  },
+  {
+    url: imageSections.entrenamiento.images[0],
+    caption: 'Entrenamiento en piscina'
+  }
+];
 const ImageCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {

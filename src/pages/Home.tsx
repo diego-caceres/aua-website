@@ -1,36 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import { Link } from "react-router-dom";
-
-const joinAUALink =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdawS6ObJo0YzBscJBTUuL26uJ2wXrtrDmfV3NL2RAw0uuEAA/viewform";
-
-const imageSections = {
-  "apnea-profundidad": {
-    title: "Apnea de Profundidad",
-    images: [
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-    ],
-  },
-  "exploracion-submarina": {
-    title: "Exploración Submarina",
-    images: [
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
-    ],
-  },
-  entrenamiento: {
-    title: "Entrenamiento",
-    images: ["/gallery/pool1.jpg", "/gallery/pool1.jpg", "/gallery/pool1.jpg"],
-  },
-};
+import { imageSections } from "../constants/imageSections";
+import { joinAUALink } from "../constants/info";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="text-white relative">
       <div className="relative h-96 overflow-hidden">
@@ -174,7 +151,9 @@ const Home = () => {
             </ul>
             <div className="text-center">
               <Link
-                to="/"
+                to={joinAUALink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
               >
                 Contáctanos para más información

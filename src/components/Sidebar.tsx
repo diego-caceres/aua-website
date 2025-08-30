@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -21,12 +21,32 @@ const scrollToTop = () => {
 };
 
 const Sidebar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isGalleryPage = location.pathname === '/gallery';
+
+  const handleSectionClick = (sectionId: string) => {
+    if (isGalleryPage) {
+      navigate(`/#${sectionId}`);
+    } else {
+      scrollToSection(sectionId);
+    }
+  };
+
+  const handleHomeClick = () => {
+    if (isGalleryPage) {
+      navigate('/');
+    } else {
+      scrollToTop();
+    }
+  };
+
   return <aside className="hidden md:block w-64 bg-blue-900 text-white p-6 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
       <nav>
         <ul className="space-y-4">
           <li>
             <button 
-              onClick={scrollToTop}
+              onClick={handleHomeClick}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Inicio
@@ -34,7 +54,7 @@ const Sidebar = () => {
           </li>
           <li>
             <button 
-              onClick={() => scrollToSection('sobre-nosotros')}
+              onClick={() => handleSectionClick('sobre-nosotros')}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Sobre Nosotros
@@ -42,7 +62,7 @@ const Sidebar = () => {
           </li>
           <li>
             <button 
-              onClick={() => scrollToSection('apnea')}
+              onClick={() => handleSectionClick('apnea')}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               ¿Qué es la Apnea?
@@ -50,7 +70,7 @@ const Sidebar = () => {
           </li>
           <li>
             <button 
-              onClick={() => scrollToSection('actividades')}
+              onClick={() => handleSectionClick('actividades')}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Actividades
@@ -58,7 +78,7 @@ const Sidebar = () => {
           </li>
           <li>
             <button 
-              onClick={() => scrollToSection('galeria')}
+              onClick={() => handleSectionClick('galeria')}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Galería
@@ -66,7 +86,7 @@ const Sidebar = () => {
           </li>
           <li>
             <button 
-              onClick={() => scrollToSection('asociate')}
+              onClick={() => handleSectionClick('asociate')}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Asociate
