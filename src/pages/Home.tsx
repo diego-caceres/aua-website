@@ -8,16 +8,16 @@ const joinAUALink =
 const imageSections = {
   "apnea-profundidad": {
     title: "Apnea de Profundidad",
-    images: ["/WhatsApp_Image_2025-07-27_at_13.34.05.jpg"]
+    images: ["/gallery/deep1.jpg"],
   },
   "exploracion-submarina": {
     title: "Exploración Submarina",
-    images: ["/WhatsApp_Image_2025-07-27_at_13.35.06.jpg"]
+    images: ["/gallery/sea1.jpg"],
   },
-  "entrenamiento": {
+  entrenamiento: {
     title: "Entrenamiento",
-    images: ["/image00063.jpg"]
-  }
+    images: ["/gallery/pool1.jpg"],
+  },
 };
 
 const Home = () => {
@@ -179,7 +179,10 @@ const Home = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(imageSections).map(([sectionId, section]) => (
-              <div key={sectionId} className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
+              <div
+                key={sectionId}
+                className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm"
+              >
                 <img
                   src={section.images[0]}
                   alt={section.title}
