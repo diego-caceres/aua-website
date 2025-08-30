@@ -1,13 +1,22 @@
-import React from 'react';
-import ImageCarousel from '../components/ImageCarousel';
-import { Link } from 'react-router-dom';
+import React from "react";
+import ImageCarousel from "../components/ImageCarousel";
+import { Link } from "react-router-dom";
+
+const joinAUALink =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdawS6ObJo0YzBscJBTUuL26uJ2wXrtrDmfV3NL2RAw0uuEAA/viewform";
+
 const Home = () => {
-  return <div className="text-white relative">
+  return (
+    <div className="text-white relative">
       <div className="relative h-96 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{
-        backgroundImage: "url('https://uploadthingy.s3.us-west-1.amazonaws.com/c4AkcrZFsUv7y3Z3sBkNga/WhatsApp_Image_2025-07-27_at_13.34.05.jpg')",
-        filter: 'brightness(0.6)'
-      }}></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://uploadthingy.s3.us-west-1.amazonaws.com/c4AkcrZFsUv7y3Z3sBkNga/WhatsApp_Image_2025-07-27_at_13.34.05.jpg')",
+            filter: "brightness(0.6)",
+          }}
+        ></div>
         <div className="absolute inset-0 flex items-center">
           <div className="container mx-auto px-6 md:px-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -71,12 +80,17 @@ const Home = () => {
           </div>
           <ImageCarousel />
           <div className="text-center mt-6">
-            <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+            <Link
+              to={joinAUALink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+            >
               ¡Únete a la AUA!
             </Link>
           </div>
         </section>
-        
+
         <section id="actividades" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Nuestras Actividades
@@ -84,27 +98,33 @@ const Home = () => {
           <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-xl font-semibold mb-3">Cursos de Formación</h3>
+                <h3 className="text-xl font-semibold mb-3">
+                  Cursos de Formación
+                </h3>
                 <p className="mb-4">
-                  Ofrecemos cursos certificados por AIDA para todos los niveles, desde principiantes hasta instructores avanzados.
+                  Ofrecemos cursos certificados por AIDA para todos los niveles,
+                  desde principiantes hasta instructores avanzados.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-3">Entrenamientos</h3>
                 <p className="mb-4">
-                  Sesiones regulares de entrenamiento en piscina y aguas abiertas con instructores calificados.
+                  Sesiones regulares de entrenamiento en piscina y aguas
+                  abiertas con instructores calificados.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-3">Competiciones</h3>
                 <p className="mb-4">
-                  Participación en competiciones nacionales e internacionales representando a Uruguay.
+                  Participación en competiciones nacionales e internacionales
+                  representando a Uruguay.
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-3">Eventos Sociales</h3>
                 <p className="mb-4">
-                  Organizamos encuentros, charlas y actividades para fortalecer la comunidad apneista.
+                  Organizamos encuentros, charlas y actividades para fortalecer
+                  la comunidad apneista.
                 </p>
               </div>
             </div>
@@ -117,8 +137,8 @@ const Home = () => {
           </h2>
           <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <p className="mb-4">
-              ¿Te interesa la apnea? ¡Te invitamos a formar parte de nuestra comunidad! 
-              Como miembro de la AUA tendrás acceso a:
+              ¿Te interesa la apnea? ¡Te invitamos a formar parte de nuestra
+              comunidad! Como miembro de la AUA tendrás acceso a:
             </p>
             <ul className="list-disc list-inside mb-6 space-y-2">
               <li>Descuentos en cursos y entrenamientos</li>
@@ -128,7 +148,10 @@ const Home = () => {
               <li>Equipamiento especializado para entrenamientos</li>
             </ul>
             <div className="text-center">
-              <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+              <Link
+                to="/"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+              >
                 Contáctanos para más información
               </Link>
             </div>
@@ -141,19 +164,31 @@ const Home = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img src="/WhatsApp_Image_2025-07-27_at_13.34.05.jpg" alt="Apnea de profundidad con cuerda guía" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <img
+                src="/WhatsApp_Image_2025-07-27_at_13.34.05.jpg"
+                alt="Apnea de profundidad con cuerda guía"
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
               <div className="p-4">
                 <p className="text-lg">Apnea de profundidad con cuerda guía</p>
               </div>
             </div>
             <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img src="/WhatsApp_Image_2025-07-27_at_13.35.06.jpg" alt="Exploración submarina en grupo" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <img
+                src="/WhatsApp_Image_2025-07-27_at_13.35.06.jpg"
+                alt="Exploración submarina en grupo"
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
               <div className="p-4">
                 <p className="text-lg">Exploración submarina en grupo</p>
               </div>
             </div>
             <div className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm">
-              <img src="/image00063.jpg" alt="Entrenamiento en piscina" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+              <img
+                src="/image00063.jpg"
+                alt="Entrenamiento en piscina"
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+              />
               <div className="p-4">
                 <p className="text-lg">Entrenamiento en piscina</p>
               </div>
@@ -161,6 +196,7 @@ const Home = () => {
           </div>
         </section>
       </div>
-    </div>;
+    </div>
+  );
 };
 export default Home;
