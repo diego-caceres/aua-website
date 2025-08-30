@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import ScrollBackground from './components/ScrollBackground';
 import Home from './pages/Home';
+import Gallery from './pages/Gallery';
 export function App() {
   return <Router>
       <div className="flex flex-col h-screen relative">
@@ -15,6 +16,7 @@ export function App() {
           <main className="flex-grow overflow-y-auto relative z-10">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<Gallery />} />
             </Routes>
             <Footer />
           </main>
