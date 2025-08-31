@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu as MenuIcon } from "lucide-react";
+import { Menu as MenuIcon, Mail } from "lucide-react";
+import { joinAUALink } from "../constants/info";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -32,7 +33,7 @@ const Header = () => {
               <img
                 src="/images/aua_white.png"
                 alt="AUA Logo"
-                className="h-14 mr-2"
+                className="h-10 md:h-14 mr-2"
               />
               <p className="text-xs text-blue-300">Filial AIDA Uruguay</p>
               <h1 className="text-xl font-semibold hidden">
@@ -42,7 +43,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <nav className="hidden md:flex space-x-8 mr-6">
+          <nav className="hidden md:flex space-x-8 mr-6 items-center">
             <Link
               to="/gallery"
               className="text-white hover:text-blue-300 transition-colors duration-300"
@@ -61,13 +62,23 @@ const Header = () => {
             >
               Actividades
             </Link>
+            <Link
+              to={joinAUALink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-300 transition-colors duration-300"
+            >
+              Asociate
+            </Link>
+
+            <Link
+              to="mailto:contacto.aidauruguay@gmail.com"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2 flex gap-2"
+            >
+              <Mail size={24} /> Contacto
+            </Link>
           </nav>
-          <Link
-            to="/"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2"
-          >
-            Contacto
-          </Link>
+
           <button
             className="md:hidden text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -80,15 +91,6 @@ const Header = () => {
         <div className="md:hidden bg-blue-900 px-4 py-2">
           <nav>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Inicio
-                </Link>
-              </li>
               <li>
                 <Link
                   to="/gallery"
@@ -117,26 +119,24 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    scrollToSection("apnea");
-                    setMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  ¿Qué es la Apnea?
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    scrollToSection("asociate");
-                    setMobileMenuOpen(false);
-                  }}
+                <Link
+                  to={joinAUALink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >
                   Asociate
-                </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="mailto:contacto.aidauruguay@gmail.com"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
+                  Contacto
+                </Link>
               </li>
             </ul>
           </nav>

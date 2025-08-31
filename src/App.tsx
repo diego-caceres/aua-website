@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import ScrollBackground from "./components/ScrollBackground";
+import MobileFooter from "./components/MobileFooter";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
@@ -20,13 +21,16 @@ function AppContent() {
       <Header />
       <div className="flex flex-grow overflow-hidden">
         {isHomePage && <Sidebar />}
-        <main className="flex-grow overflow-y-auto relative z-10">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/activities" element={<Activities />} />
-          </Routes>
+        <main className="flex-grow overflow-y-auto relative z-10 flex flex-col">
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/activities" element={<Activities />} />
+            </Routes>
+          </div>
+          <MobileFooter />
         </main>
       </div>
       <Footer />
