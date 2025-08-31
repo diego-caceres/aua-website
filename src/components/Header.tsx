@@ -29,7 +29,7 @@ const Header = () => {
       <div className="px-10  py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <div className="flex items-start flex-col">
+            <div className="flex items-start md:items-center flex-col">
               <img
                 src="/images/aua_white.png"
                 alt="AUA Logo"
