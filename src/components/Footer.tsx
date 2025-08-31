@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
+
 const Footer = () => {
   return (
     <footer className="bg-blue-950 text-white py-4 mt-auto">
