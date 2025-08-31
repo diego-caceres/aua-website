@@ -58,7 +58,7 @@ const Sidebar = () => {
               onClick={() => handleSectionClick("sobre-nosotros")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
-              Sobre Nosotros
+              Sobre la AUA
             </button>
           </li>
           <li>
@@ -77,20 +77,21 @@ const Sidebar = () => {
               Actividades
             </button>
           </li>
-          <li>
-            <button
-              onClick={() => handleSectionClick("galeria")}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Galería
-            </button>
-          </li>
+
           <li>
             <button
               onClick={() => handleSectionClick("asociate")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Asociate
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleSectionClick("galeria")}
+              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
+            >
+              Galería
             </button>
           </li>
         </ul>

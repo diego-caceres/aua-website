@@ -25,7 +25,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <header className="bg-blue-950 text-white">
-      <div className="container px-8  py-3 flex justify-between items-center">
+      <div className="px-10  py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <div className="flex items-start flex-col">
@@ -42,9 +42,29 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center">
+          <nav className="hidden md:flex space-x-8 mr-6">
+            <Link
+              to="/gallery"
+              className="text-white hover:text-blue-300 transition-colors duration-300"
+            >
+              Galería
+            </Link>
+            <Link
+              to="/about"
+              className="text-white hover:text-blue-300 transition-colors duration-300"
+            >
+              Sobre Nosotros
+            </Link>
+            <Link
+              to="/activities"
+              className="text-white hover:text-blue-300 transition-colors duration-300"
+            >
+              Actividades
+            </Link>
+          </nav>
           <Link
             to="/"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-4"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2"
           >
             Contacto
           </Link>
@@ -61,26 +81,40 @@ const Header = () => {
           <nav>
             <ul className="space-y-2">
               <li>
-                <button
-                  onClick={() => {
-                    scrollToTop();
-                    setMobileMenuOpen(false);
-                  }}
+                <Link
+                  to="/"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >
                   Inicio
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    scrollToSection("sobre-nosotros");
-                    setMobileMenuOpen(false);
-                  }}
+                <Link
+                  to="/gallery"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
+                  Galería
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >
                   Sobre Nosotros
-                </button>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/activities"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
+                  Actividades
+                </Link>
               </li>
               <li>
                 <button
@@ -91,28 +125,6 @@ const Header = () => {
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >
                   ¿Qué es la Apnea?
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    scrollToSection("actividades");
-                    setMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Actividades
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    scrollToSection("galeria");
-                    setMobileMenuOpen(false);
-                  }}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Galería
                 </button>
               </li>
               <li>

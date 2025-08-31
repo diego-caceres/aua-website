@@ -57,7 +57,7 @@ const Home = () => {
           <div className="text-center mt-6">
             <Link
               to="/about"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300 border-2 border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl"
             >
               Ver más
             </Link>
@@ -94,7 +94,7 @@ const Home = () => {
               to={joinAUALink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300 border-2 border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl"
             >
               ¡Únete a la AUA!
             </Link>
@@ -139,6 +139,14 @@ const Home = () => {
               </div>
             </div>
           </div>
+          <div className="text-center mt-6">
+            <Link
+              to="/activities"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300 border-2 border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl"
+            >
+              Ver todas
+            </Link>
+          </div>
         </section>
 
         <section id="asociate" className="mb-16">
@@ -162,7 +170,7 @@ const Home = () => {
                 to={joinAUALink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300 border-2 border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl"
               >
                 Contáctanos para más información
               </Link>
@@ -194,7 +202,7 @@ const Home = () => {
           <div className="text-center mt-6">
             <Link
               to="/gallery"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300 border-2 border-blue-500 hover:border-blue-400 shadow-lg hover:shadow-xl"
             >
               Ver Galería Completa
             </Link>
