@@ -54,6 +54,14 @@ const Home = () => {
               avanzados.
             </p>
           </div>
+          <div className="text-center mt-6">
+            <Link
+              to="/about"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300"
+            >
+              Ver más
+            </Link>
+          </div>
         </section>
         <section id="apnea" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">

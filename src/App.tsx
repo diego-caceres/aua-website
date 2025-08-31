@@ -1,13 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
-import ScrollBackground from './components/ScrollBackground';
-import Home from './pages/Home';
-import Gallery from './pages/Gallery';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
+import ScrollBackground from "./components/ScrollBackground";
+import Home from "./pages/Home";
+import Gallery from "./pages/Gallery";
+
 export function App() {
-  return <Router>
+  return (
+    <Router>
+      <ScrollToTop />
       <div className="flex flex-col h-screen relative">
         <ScrollBackground />
         <Header />
@@ -18,9 +22,10 @@ export function App() {
               <Route path="/" element={<Home />} />
               <Route path="/gallery" element={<Gallery />} />
             </Routes>
-            <Footer />
           </main>
         </div>
+        <Footer />
       </div>
-    </Router>;
+    </Router>
+  );
 }

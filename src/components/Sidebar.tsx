@@ -1,29 +1,29 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
-  const mainContent = document.querySelector('main');
+  const mainContent = document.querySelector("main");
   if (element && mainContent) {
     // Get the actual header height including mobile menu if open
-    const header = document.querySelector('header');
+    const header = document.querySelector("header");
     const headerHeight = header ? header.offsetHeight : 80;
     const elementTop = element.offsetTop - headerHeight - 20; // Extra padding
-    mainContent.scrollTo({ top: elementTop, behavior: 'smooth' });
+    mainContent.scrollTo({ top: elementTop, behavior: "smooth" });
   }
 };
 
 const scrollToTop = () => {
-  const mainContent = document.querySelector('main');
+  const mainContent = document.querySelector("main");
   if (mainContent) {
-    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    mainContent.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isGalleryPage = location.pathname === '/gallery';
+  const isGalleryPage = location.pathname === "/gallery";
 
   const handleSectionClick = (sectionId: string) => {
     if (isGalleryPage) {
@@ -35,17 +35,18 @@ const Sidebar = () => {
 
   const handleHomeClick = () => {
     if (isGalleryPage) {
-      navigate('/');
+      navigate("/");
     } else {
       scrollToTop();
     }
   };
 
-  return <aside className="hidden md:block w-64 bg-blue-900 text-white p-6 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
+  return (
+    <aside className="hidden md:block w-56 bg-blue-900 text-white p-6 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
       <nav>
         <ul className="space-y-4">
           <li>
-            <button 
+            <button
               onClick={handleHomeClick}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
@@ -53,40 +54,40 @@ const Sidebar = () => {
             </button>
           </li>
           <li>
-            <button 
-              onClick={() => handleSectionClick('sobre-nosotros')}
+            <button
+              onClick={() => handleSectionClick("sobre-nosotros")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Sobre Nosotros
             </button>
           </li>
           <li>
-            <button 
-              onClick={() => handleSectionClick('apnea')}
+            <button
+              onClick={() => handleSectionClick("apnea")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               ¿Qué es la Apnea?
             </button>
           </li>
           <li>
-            <button 
-              onClick={() => handleSectionClick('actividades')}
+            <button
+              onClick={() => handleSectionClick("actividades")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Actividades
             </button>
           </li>
           <li>
-            <button 
-              onClick={() => handleSectionClick('galeria')}
+            <button
+              onClick={() => handleSectionClick("galeria")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Galería
             </button>
           </li>
           <li>
-            <button 
-              onClick={() => handleSectionClick('asociate')}
+            <button
+              onClick={() => handleSectionClick("asociate")}
               className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
             >
               Asociate
@@ -94,6 +95,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-    </aside>;
+    </aside>
+  );
 };
 export default Sidebar;
