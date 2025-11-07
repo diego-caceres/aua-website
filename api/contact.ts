@@ -23,6 +23,14 @@ export default async function handler(
     return res.status(400).json({ error: 'Email inválido' });
   }
 
+  // Check for required environment variables
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error('Missing SMTP credentials. SMTP_USER and SMTP_PASS must be set.');
+    return res.status(500).json({
+      error: 'El servidor no está configurado correctamente. Por favor, contacta al administrador.'
+    });
+  }
+
   try {
     // Create transporter using environment variables
     const transporter = nodemailer.createTransport({
