@@ -9,12 +9,13 @@ const Activities = () => {
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
-        <div className="mb-8">
+        <div>
           <Link
             to="/"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
+            style={{ pointerEvents: 'auto' }}
           >
-            ← Volver al inicio
+            ← Inicio
           </Link>
         </div>
         
@@ -24,56 +25,39 @@ const Activities = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Apnea de Profundidad</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-300">EVENTOS</h2>
             <p className="text-lg leading-relaxed mb-4">
-              Descensos verticales con cuerda guía para alcanzar las máximas profundidades 
-              de forma segura y controlada.
+              Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.
             </p>
-            <ul className="space-y-2">
-              <li>• Entrenamientos semanales</li>
-              <li>• Competencias nacionales</li>
-              <li>• Certificaciones AIDA</li>
-            </ul>
+            <p className="text-lg leading-relaxed mb-4">
+              Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.
+            </p>
           </section>
 
           <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Exploración Submarina</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-300">COMPETICIONES</h2>
             <p className="text-lg leading-relaxed mb-4">
-              Inmersiones recreativas para explorar la vida marina y los fondos 
-              de nuestras costas uruguayas.
+              Siendo parte de AUA, tendrás la posibilidad de participar en competiciones nacionales e internacionales (¡incluidos campeonatos mundiales!), representando a Uruguay.
             </p>
-            <ul className="space-y-2">
-              <li>• Salidas grupales</li>
-              <li>• Fotografía submarina</li>
-              <li>• Conservación marina</li>
-            </ul>
+            <p className="text-lg leading-relaxed mb-4">
+              ¡Estate atento para que sigamos mejorando las marcas del país!
+            </p>
           </section>
 
           <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Entrenamiento en Piscina</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-300">INTERCAMBIO</h2>
             <p className="text-lg leading-relaxed mb-4">
-              Sesiones de entrenamiento técnico para mejorar la capacidad pulmonar 
-              y las técnicas de apnea.
+              Formá parte de un extenso grupo de apneistas de todos los niveles con quienes podrás compartir asiduamente, intercambiar experiencias, compartir opiniones respecto de tus entrenamientos, el equipo, tu viaje a través de la apnea, para que sigamos haciendo crecer la comunidad juntos.
             </p>
-            <ul className="space-y-2">
-              <li>• Apnea estática</li>
-              <li>• Apnea dinámica</li>
-              <li>• Técnicas de respiración</li>
-            </ul>
           </section>
 
           <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Cursos y Certificaciones</h2>
+            <h2 className="text-2xl font-bold mb-4 text-blue-300">CONTACTO</h2>
             <p className="text-lg leading-relaxed mb-4">
-              Formación oficial AIDA desde nivel principiante hasta instructor.
+              Accedé a contactos con escuelas locales e internaciones. Consultanos!
             </p>
-            <ul className="space-y-2">
-              <li>• AIDA 1 - Principiante</li>
-              <li>• AIDA 2 - Intermedio</li>
-              <li>• AIDA 3 - Avanzado</li>
-              <li>• Cursos de instructor</li>
-            </ul>
           </section>
+          
         </div>
       </div>
     </div>

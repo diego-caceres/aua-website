@@ -37,21 +37,13 @@ const Home = () => {
           </h2>
           <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
             <p className="mb-4">
-              La Asociación Uruguaya de Apneistas (AUA) es una organización sin
-              fines de lucro dedicada a promocionar la apnea recreativa y de
-              competición en Uruguay, en un entorno seguro y controlado.
+              La Asociación Uruguaya de Apneistas (AUA) es una organización sin fines de lucro dedicada a promocionar la apnea recreativa y de competición en Uruguay.
             </p>
             <p className="mb-4">
-              Actuamos como filial oficial de AIDA (Asociación Internacional
-              para el Desarrollo de la Apnea) en Uruguay, representando a
-              nuestro país en competiciones internacionales y promoviendo los
-              estándares de seguridad y formación establecidos a nivel mundial.
+              Actuamos como filial oficial de AIDA (Asociación Internacional para el Desarrollo de la Apnea) en Uruguay, con posibilidades de representar a nuestro país en competiciones internacionales y promoviendo los estándares de seguridad y formación establecidos a nivel mundial.
             </p>
             <p>
-              Nuestro objetivo es acercar este fascinante deporte al público
-              general, organizando actividades, cursos de formación y eventos
-              para todos los niveles, desde principiantes hasta apneistas
-              avanzados.
+              Nuestro objetivo es acercar este fascinante deporte al público general, organizando actividades, talleres, charlas y eventos para todos los niveles, y fomentando la participación de los atletas en diversas instancias (tanto nacionales como internacionales) para que la disciplina siga creciendo en nuestro país.
             </p>
           </div>
           <div className="text-center mt-6">
@@ -106,37 +98,40 @@ const Home = () => {
             Nuestras Actividades
           </h2>
           <div className="bg-black bg-opacity-30 backdrop-blur-sm p-6 rounded-lg">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-2 mb-6">
               <div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Cursos de Formación
+                <h3 className="text-xl font-semibold mb-3 text-blue-300">
+                  EVENTOS
                 </h3>
                 <p className="mb-4">
-                  Ofrecemos cursos certificados por AIDA para todos los niveles,
-                  desde principiantes hasta instructores avanzados.
+                  Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.                   
                 </p>
+                <p className="mb-4">Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.</p>
               </div>
+
               <div>
-                <h3 className="text-xl font-semibold mb-3">Entrenamientos</h3>
+                <h3 className="text-xl font-semibold mb-3 text-blue-300">COMPETICIONES</h3>
                 <p className="mb-4">
-                  Sesiones regulares de entrenamiento en piscina y aguas
-                  abiertas con instructores calificados.
+                  Siendo parte de AUA, tendrás la posibilidad de participar en competiciones nacionales e internacionales (¡incluidos campeonatos mundiales!), representando a Uruguay.
+                </p>
+                <p className="mb-4">
+                  ¡Estate atento para que sigamos mejorando las marcas del país!
                 </p>
               </div>
+
               <div>
-                <h3 className="text-xl font-semibold mb-3">Competiciones</h3>
+                <h3 className="text-xl font-semibold mb-3 text-blue-300">INTERCAMBIO</h3>
                 <p className="mb-4">
-                  Participación en competiciones nacionales e internacionales
-                  representando a Uruguay.
+                  Formá parte de un extenso grupo de apneistas de todos los niveles con quienes podrás compartir asiduamente, intercambiar experiencias, compartir opiniones respecto de tus entrenamientos, el equipo, tu viaje a través de la apnea, para que sigamos haciendo crecer la comunidad juntos.
                 </p>
               </div>
+
               <div>
-                <h3 className="text-xl font-semibold mb-3">Eventos Sociales</h3>
+                <h3 className="text-xl font-semibold mb-3 text-blue-300">CONTACTO</h3>
                 <p className="mb-4">
-                  Organizamos encuentros, charlas y actividades para fortalecer
-                  la comunidad apneista.
+                  Accedé a contactos con escuelas locales e internaciones. Consultanos!
                 </p>
-              </div>
+              </div>              
             </div>
           </div>
           <div className="text-center mt-6">

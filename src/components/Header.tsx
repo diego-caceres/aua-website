@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { contactEmail } from "../constants/info";
 import { Menu as MenuIcon, Mail } from "lucide-react";
 import { joinAUALink } from "../constants/info";
 
@@ -72,7 +73,7 @@ const Header = () => {
             </Link>
 
             <Link
-              to="mailto:contacto.aidauruguay@gmail.com"
+              to={`mailto:${contactEmail}`}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2 flex gap-2"
             >
               <Mail size={24} /> Contacto
@@ -131,7 +132,7 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  to="mailto:contacto.aidauruguay@gmail.com"
+                  to={`mailto:${contactEmail}`}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >

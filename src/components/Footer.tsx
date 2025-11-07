@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
+import { contactEmail } from "../constants/info";
 
 const Footer = () => {
   return (
@@ -26,16 +27,9 @@ const Footer = () => {
             >
               <Instagram size={24} />
             </a>
+            
             <a
-              href="https://wa.me/59812345678"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-300 transition-colors"
-            >
-              <Phone size={24} />
-            </a>
-            <a
-              href="mailto:contacto.aidauruguay@gmail.com"
+                href={`mailto:${contactEmail}`}
               className="hover:text-blue-300 transition-colors"
             >
               <Mail size={24} />

@@ -1,22 +1,29 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { imageSections } from "../constants/imageSections";
-
+import ImageModal from "../components/ImageModal";
 
 const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedAltText, setSelectedAltText] = useState<string>('');
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, []);
 
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
-        <div className="mb-8">
+        <div>
           <Link
             to="/"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
+            style={{ pointerEvents: 'auto' }}
           >
-            ← Volver al inicio
+            ← Inicio
           </Link>
         </div>
         
@@ -33,7 +40,11 @@ const Gallery = () => {
               {section.images.map((image, index) => (
                 <div
                   key={index}
-                  className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm"
+                  className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm cursor-pointer"
+                  onClick={() => {
+                    setSelectedImage(image);
+                    setSelectedAltText(`${section.title} ${index + 1}`);
+                  }}
                 >
                   <img
                     src={image}
@@ -46,6 +57,13 @@ const Gallery = () => {
           </section>
         ))}
       </div>
+      {selectedImage && (
+        <ImageModal
+          imageUrl={selectedImage}
+          altText={selectedAltText}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </div>
   );
 };

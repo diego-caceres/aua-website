@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { imageSections } from '../constants/imageSections';
 
-const images = [
-  {
-    url: imageSections["apnea-profundidad"].images[0],
-    caption: 'Apnea de profundidad con cuerda guía'
-  },
+const images = [  
   {
     url: imageSections["exploracion-submarina"].images[0],
     caption: 'Exploración submarina en grupo'
@@ -15,6 +10,10 @@ const images = [
   {
     url: imageSections.entrenamiento.images[0],
     caption: 'Entrenamiento en piscina'
+  },
+  {
+    url: imageSections["apnea-profundidad"].images[0],
+    caption: 'Apnea de profundidad con cuerda guía'
   }
 ];
 const ImageCarousel = () => {

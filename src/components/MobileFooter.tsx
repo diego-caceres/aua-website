@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
+import { contactEmail } from "../constants/info";
 
 const MobileFooter = () => {
   return (
@@ -25,7 +26,7 @@ const MobileFooter = () => {
               <Phone size={20} />
             </a>
             <a
-              href="mailto:contacto.aidauruguay@gmail.com"
+              href={`mailto:${contactEmail}`}
               className="hover:text-blue-300 transition-colors"
             >
               <Mail size={20} />

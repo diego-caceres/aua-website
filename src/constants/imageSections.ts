@@ -1,24 +1,42 @@
-export const imageSections = {
-  "apnea-profundidad": {
-    title: "Apnea de Profundidad",
-    images: [
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-      "/gallery/deep1.jpg",
-    ],
-  },
+export const imageSections = {  
   "exploracion-submarina": {
     title: "Exploración Submarina",
     images: [
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
-      "/gallery/sea1.jpg",
+      "/gallery/recreativo/recreativo_1.JPG",
+      "/gallery/recreativo/recreativo_2.JPG",
+      "/gallery/recreativo/recreativo_3.JPG",
+      "/gallery/recreativo/recreativo_4.WEBP",
+      "/gallery/recreativo/recreativo_5.WEBP",
+      "/gallery/recreativo/recreativo_6.WEBP",
     ],
   },
   entrenamiento: {
     title: "Entrenamiento",
-    images: ["/gallery/pool1.jpg", "/gallery/pool1.jpg", "/gallery/pool1.jpg"],
+    images: ["/gallery/piscina/piscina_1.jpg", "/gallery/piscina/piscina_2.jpg", "/gallery/piscina/piscina_3.jpg"],
+  },
+  "apnea-profundidad": {
+    title: "Apnea de Profundidad",
+    images: [
+      "/gallery/profundidad/profundidad_19.WEBP",
+      "/gallery/profundidad/profundidad_1.JPG",
+      "/gallery/profundidad/profundidad_2.JPG",
+      "/gallery/profundidad/profundidad_3.JPG",
+      "/gallery/profundidad/profundidad_4.JPG",
+      "/gallery/profundidad/profundidad_5.JPG",
+      "/gallery/profundidad/profundidad_6.JPG",
+      "/gallery/profundidad/profundidad_7.JPG",
+      "/gallery/profundidad/profundidad_8.JPG",
+      "/gallery/profundidad/profundidad_9.JPG",
+      "/gallery/profundidad/profundidad_10.JPG",
+      "/gallery/profundidad/profundidad_11.JPG",
+      "/gallery/profundidad/profundidad_12.JPG",
+      "/gallery/profundidad/profundidad_13.JPG",
+      "/gallery/profundidad/profundidad_14.JPG",
+      "/gallery/profundidad/profundidad_15.JPG",
+      "/gallery/profundidad/profundidad_16.JPG",
+      "/gallery/profundidad/profundidad_17.WEBP",
+      "/gallery/profundidad/profundidad_18.WEBP",
+      "/gallery/profundidad/profundidad_20.WEBP",
+    ],
   },
 };
