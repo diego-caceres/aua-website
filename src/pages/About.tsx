@@ -37,8 +37,7 @@ const About = () => {
           <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Nuestra Misión</h2>
             <p className="text-lg leading-relaxed">
-              Fomentar la práctica segura de la apnea, brindar formación de
-              calidad y crear una comunidad de apneistas comprometidos con el
+              Fomentar la práctica segura de la apnea y crear una comunidad de apneistas comprometidos con el
               deporte y el medio ambiente marino.
             </p>
           </section>

@@ -6,6 +6,7 @@ import ImageModal from "../components/ImageModal";
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedAltText, setSelectedAltText] = useState<string>('');
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const mainContent = document.querySelector('main');
@@ -13,6 +14,10 @@ const Gallery = () => {
       mainContent.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, []);
+
+  const handleImageLoad = (image: string) => {
+    setLoadedImages(prev => new Set(prev).add(image));
+  };
 
   return (
     <div className="text-white relative">
@@ -37,22 +42,42 @@ const Gallery = () => {
               {section.title}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.images.map((image, index) => (
-                <div
-                  key={index}
-                  className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm cursor-pointer"
-                  onClick={() => {
-                    setSelectedImage(image);
-                    setSelectedAltText(`${section.title} ${index + 1}`);
-                  }}
-                >
-                  <img
-                    src={image}
-                    alt={`${section.title} ${index + 1}`}
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              ))}
+              {section.images.map((image, index) => {
+                const isLoaded = loadedImages.has(image);
+                return (
+                  <div
+                    key={index}
+                    className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm cursor-pointer relative"
+                    onClick={() => {
+                      if (isLoaded) {
+                        setSelectedImage(image);
+                        setSelectedAltText(`${section.title} ${index + 1}`);
+                      }
+                    }}
+                  >
+                    {/* Skeleton loader */}
+                    {!isLoaded && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 via-blue-800/50 to-blue-900/50 animate-pulse">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-12 h-12 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      </div>
+                    )}
+
+                    <img
+                      src={image}
+                      alt={`${section.title} ${index + 1}`}
+                      className={`w-full h-64 object-cover transition-all duration-500 ${
+                        isLoaded
+                          ? 'opacity-100 hover:scale-105'
+                          : 'opacity-0'
+                      }`}
+                      onLoad={() => handleImageLoad(image)}
+                      loading="lazy"
+                    />
+                  </div>
+                );
+              })}
             </div>
           </section>
         ))}

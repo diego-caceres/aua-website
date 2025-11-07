@@ -144,7 +144,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="asociate" className="mb-16">
+        {/* <section id="asociate" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Únete a la AUA
           </h2>
@@ -171,7 +171,7 @@ const Home = () => {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="galeria" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">

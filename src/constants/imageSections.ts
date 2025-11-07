@@ -1,6 +1,6 @@
 export const imageSections = {  
   "exploracion-submarina": {
-    title: "Exploración Submarina",
+    title: "Apnea Recreativa",
     images: [
       "/gallery/recreativo/recreativo_1.JPG",
       "/gallery/recreativo/recreativo_2.JPG",
