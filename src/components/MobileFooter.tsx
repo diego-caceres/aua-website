@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
-import { contactEmail } from "../constants/info";
+import ContactModal from "./ContactModal";
 
 const MobileFooter = () => {
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   return (
+    <>
     <footer className="md:hidden bg-blue-950 text-white py-4 mt-auto">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center space-y-4">
@@ -25,12 +27,12 @@ const MobileFooter = () => {
             >
               <Phone size={20} />
             </a>
-            <a
-              href={`mailto:${contactEmail}`}
+            <button
+              onClick={() => setContactModalOpen(true)}
               className="hover:text-blue-300 transition-colors"
             >
               <Mail size={20} />
-            </a>
+            </button>
           </div>
           <div className="text-center">
             <p className="text-xs text-blue-300 mb-1">
@@ -46,6 +48,8 @@ const MobileFooter = () => {
         </div>
       </div>
     </footer>
+    {contactModalOpen && <ContactModal onClose={() => setContactModalOpen(false)} />}
+    </>
   );
 };
 

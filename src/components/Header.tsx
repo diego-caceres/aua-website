@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { contactEmail } from "../constants/info";
 import { Menu as MenuIcon, Mail } from "lucide-react";
 import { joinAUALink } from "../constants/info";
+import ContactModal from "./ContactModal";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -25,7 +25,9 @@ const scrollToTop = () => {
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   return (
+    <>
     <header className="bg-blue-950 text-white">
       <div className="px-10  py-3 flex justify-between items-center">
         <div className="flex items-center">
@@ -72,12 +74,12 @@ const Header = () => {
               Asociate
             </Link>
 
-            <Link
-              to={`mailto:${contactEmail}`}
+            <button
+              onClick={() => setContactModalOpen(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2 flex gap-2"
             >
               <Mail size={24} /> Contacto
-            </Link>
+            </button>
           </nav>
 
           <button
@@ -131,19 +133,23 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to={`mailto:${contactEmail}`}
-                  onClick={() => setMobileMenuOpen(false)}
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setContactModalOpen(true);
+                  }}
                   className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
                 >
                   Contacto
-                </Link>
+                </button>
               </li>
             </ul>
           </nav>
         </div>
       )}
     </header>
+    {contactModalOpen && <ContactModal onClose={() => setContactModalOpen(false)} />}
+    </>
   );
 };
 export default Header;
