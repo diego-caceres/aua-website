@@ -28,7 +28,7 @@ const Gallery = () => {
             className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
             style={{ pointerEvents: 'auto' }}
           >
-            ← Inicio
+            ← Inicios
           </Link>
         </div>
         
