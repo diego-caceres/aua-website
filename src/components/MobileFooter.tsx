@@ -12,7 +12,7 @@ const MobileFooter = () => {
         <div className="flex flex-col items-center space-y-4">
           <div className="flex space-x-6">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/aida_uruguay"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-300 transition-colors"
