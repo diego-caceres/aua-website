@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Open Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'heading': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'sans': ['DM Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'heading': ['Cormorant Garamond', 'ui-serif', 'serif'],
       },
     },
   },

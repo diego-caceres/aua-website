@@ -38,7 +38,7 @@ const Gallery = () => {
 
         {Object.entries(imageSections).map(([sectionId, section]) => (
           <section key={sectionId} className="mb-16">
-            <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
+            <h2 className="text-xl font-semibold mb-5 pb-2 border-b border-white/20">
               {section.title}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

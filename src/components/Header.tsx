@@ -76,9 +76,9 @@ const Header = () => {
 
             <button
               onClick={() => setContactModalOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-300 mr-2 flex gap-2"
+              className="border border-white/30 hover:border-blue-300 hover:text-blue-300 text-white/80 px-4 py-1.5 rounded-md transition-all duration-300 mr-2 flex gap-2 items-center text-sm"
             >
-              <Mail size={24} /> Contacto
+              <Mail size={18} /> Contacto
             </button>
           </nav>
 

@@ -4,4 +4,7 @@ export const joinAUALink =
 export const estatutosLink =
   "https://drive.google.com/file/d/19h01dEG5oO8n9dFh2R3H-g50wTqY809r/view?usp=drive_link";
 
+export const actasAsambleasLink =
+  "https://drive.google.com/file/d/19h01dEG5oO8n9dFh2R3H-g50wTqY809r/view?usp=drive_link";
+
 export const contactEmail = "contacto.aidauruguay@gmail.com";

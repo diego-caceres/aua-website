@@ -24,8 +24,8 @@ const Activities = () => {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-300">EVENTOS</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white">Eventos</h2>
             <p className="text-lg leading-relaxed mb-4">
               Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.
             </p>
@@ -34,8 +34,8 @@ const Activities = () => {
             </p>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-300">COMPETICIONES</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white">Competiciones</h2>
             <p className="text-lg leading-relaxed mb-4">
               Siendo parte de AUA, tendrás la posibilidad de participar en competiciones nacionales e internacionales (¡incluidos campeonatos mundiales!), representando a Uruguay.
             </p>
@@ -44,15 +44,15 @@ const Activities = () => {
             </p>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-300">INTERCAMBIO</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white">Intercambio</h2>
             <p className="text-lg leading-relaxed mb-4">
               Formá parte de un extenso grupo de apneistas de todos los niveles con quienes podrás compartir asiduamente, intercambiar experiencias, compartir opiniones respecto de tus entrenamientos, el equipo, tu viaje a través de la apnea, para que sigamos haciendo crecer la comunidad juntos.
             </p>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-blue-300">CONTACTO</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white">Contacto</h2>
             <p className="text-lg leading-relaxed mb-4">
               Accedé a contactos con escuelas locales e internaciones. Consultanos!
             </p>

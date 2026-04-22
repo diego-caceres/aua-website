@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { estatutosLink } from "../constants/info";
+import { estatutosLink, actasAsambleasLink } from "../constants/info";
+import DirectivaSection from "../components/DirectivaSection";
 
 const About = () => {
   useEffect(() => {
@@ -25,8 +26,8 @@ const About = () => {
         </h1>
 
         <div className="space-y-8">
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Nuestra Historia</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestra Historia</h2>
             <p className="text-lg leading-relaxed">
               La Asociación Uruguaya de Apneistas (AUA) es la filial oficial de
               AIDA Uruguay, dedicada a promover y desarrollar el deporte de la
@@ -34,16 +35,16 @@ const About = () => {
             </p>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Nuestra Misión</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestra Misión</h2>
             <p className="text-lg leading-relaxed">
               Fomentar la práctica segura de la apnea y crear una comunidad de apneistas comprometidos con el
               deporte y el medio ambiente marino.
             </p>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Nuestros Valores</h2>
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestros Valores</h2>
             <ul className="text-lg leading-relaxed space-y-2">
               <li>• Seguridad ante todo</li>
               <li>• Respeto por el medio ambiente</li>
@@ -52,8 +53,10 @@ const About = () => {
             </ul>
           </section>
 
-          <section className="bg-black bg-opacity-30 backdrop-blur-sm rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Documentos Importantes</h2>
+          <DirectivaSection />
+
+          <section className="bg-white/5 rounded-lg p-8">
+            <h2 className="text-xl font-semibold mb-4 text-white/90">Documentos Importantes</h2>
             <div className="space-y-3">
               <div>
                 <a
@@ -63,6 +66,18 @@ const About = () => {
                   className="text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-300"
                 >
                   Estatutos de la AUA
+                </a>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <a
+                  href={actasAsambleasLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-300"
+                >
+                  Actas de Asambleas
                 </a>
               </div>
             </div>

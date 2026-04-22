@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Activities from "./pages/Activities";
+import HistoricalDirectives from "./pages/HistoricalDirectives";
 
 function AppContent() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AppContent() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<About />} />
               <Route path="/activities" element={<Activities />} />
+              <Route path="/directivas-anteriores" element={<HistoricalDirectives />} />
             </Routes>
           </div>
           <MobileFooter />
