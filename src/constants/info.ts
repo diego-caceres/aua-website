@@ -7,4 +7,8 @@ export const estatutosLink =
 export const actasAsambleasLink =
   "https://drive.google.com/file/d/19h01dEG5oO8n9dFh2R3H-g50wTqY809r/view?usp=drive_link";
 
+// El acceso esta publico aun
+// export const actasAsambleasLink =
+//   "https://drive.google.com/drive/u/2/folders/1Ibm1iKaSFaPNFykF7Ddi7GMwDaYu4EFR";
+
 export const contactEmail = "contacto.aidauruguay@gmail.com";

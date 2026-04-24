@@ -77,7 +77,7 @@ const About = () => {
                   rel="noopener noreferrer"
                   className="text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-300"
                 >
-                  Actas de Asambleas
+                  Actas de Asambleas Generales
                 </a>
               </div>
             </div>

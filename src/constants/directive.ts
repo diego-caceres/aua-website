@@ -17,6 +17,6 @@ export const suplentes: DirectiveMember[] = [
 ];
 
 export const sindicatura: DirectiveMember[] = [
-  { name: "Agustín Barreiro", role: "Sindicatura Titular" },
-  { name: "Gulen Canol", role: "Sindicatura Suplente" },
+  { name: "Agustín Barreiro", role: "Sindicatura Titular", photo: "/images/directiva/agus.jpeg" },
+  { name: "Gulen Canol", role: "Sindicatura Suplente", photo: "/images/directiva/gulen.jpeg" },
 ];
