@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Maximize, Minimize } from "lucide-react";
 import { video360Url } from "../constants/info";
 
 const Inmersion360 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [started, setStarted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const mainContent = document.querySelector("main");
@@ -79,6 +81,7 @@ const Inmersion360 = () => {
     };
 
     renderer.domElement.style.cursor = "grab";
+    renderer.domElement.style.touchAction = "none";
     renderer.domElement.addEventListener("pointerdown", onPointerDown);
     renderer.domElement.addEventListener("pointermove", onPointerMove);
     renderer.domElement.addEventListener("pointerup", onPointerUp);
@@ -109,15 +112,18 @@ const Inmersion360 = () => {
     };
     animate();
 
-    // Resize
+    // Resize — handles both window resize and fullscreen transitions
     const onResize = () => {
       const w = container.clientWidth;
-      const h = Math.round(w * (9 / 16));
+      const h = document.fullscreenElement
+        ? window.innerHeight
+        : Math.round(w * (9 / 16));
       renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
     };
     window.addEventListener("resize", onResize);
+    document.addEventListener("fullscreenchange", onResize);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -125,6 +131,7 @@ const Inmersion360 = () => {
       renderer.domElement.removeEventListener("pointermove", onPointerMove);
       renderer.domElement.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("fullscreenchange", onResize);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("loadedmetadata", onMeta);
       video.removeEventListener("play", onPlay);
@@ -140,6 +147,18 @@ const Inmersion360 = () => {
     const video = videoRef.current;
     if (!video) return;
     video.paused ? video.play() : video.pause();
+  };
+
+  const toggleFullscreen = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    if (!document.fullscreenElement) {
+      wrapper.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
   };
 
   const seek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -171,46 +190,55 @@ const Inmersion360 = () => {
           Haz clic y arrastra para explorar la inmersión en todas direcciones.
         </p>
 
-        <div className="relative rounded-xl overflow-hidden shadow-2xl bg-black">
-          {/* Three.js canvas */}
-          <div ref={containerRef} className="w-full" />
+        <div ref={wrapperRef} className="rounded-xl overflow-hidden shadow-2xl bg-black">
+          <div className="relative">
+            {/* Three.js canvas */}
+            <div ref={containerRef} className="w-full" />
 
-          {/* Play overlay — shown before first play */}
-          {!started && (
-            <div
-              className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer rounded-xl"
-              onClick={togglePlay}
-            >
-              <div className="w-20 h-20 rounded-full bg-blue-500/80 flex items-center justify-center hover:bg-blue-400/90 transition-colors">
-                <Play size={36} className="text-white ml-1" />
+            {/* Play overlay — shown before first play */}
+            {!started && (
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer"
+                onClick={togglePlay}
+              >
+                <div className="w-20 h-20 rounded-full bg-blue-500/80 flex items-center justify-center hover:bg-blue-400/90 transition-colors">
+                  <Play size={36} className="text-white ml-1" />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        {/* Controls */}
-        <div className="flex items-center gap-3 mt-3 px-1">
-          <button
-            onClick={togglePlay}
-            className="text-white hover:text-blue-300 transition-colors"
-          >
-            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-          </button>
-          <span className="text-xs text-blue-300/70 w-10 shrink-0">
-            {fmt(currentTime)}
-          </span>
-          <input
-            type="range"
-            min={0}
-            max={duration || 100}
-            step={0.1}
-            value={currentTime}
-            onChange={seek}
-            className="flex-1 h-1 accent-blue-400"
-          />
-          <span className="text-xs text-blue-300/70 w-10 shrink-0 text-right">
-            {fmt(duration)}
-          </span>
+          {/* Controls */}
+          <div className="flex items-center gap-3 px-3 py-2 bg-black/60">
+            <button
+              onClick={togglePlay}
+              className="text-white hover:text-blue-300 transition-colors"
+            >
+              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+            </button>
+            <span className="text-xs text-blue-300/70 w-10 shrink-0">
+              {fmt(currentTime)}
+            </span>
+            <input
+              type="range"
+              min={0}
+              max={duration || 100}
+              step={0.1}
+              value={currentTime}
+              onChange={seek}
+              className="flex-1 h-1 accent-blue-400"
+            />
+            <span className="text-xs text-blue-300/70 w-10 shrink-0 text-right">
+              {fmt(duration)}
+            </span>
+            <button
+              onClick={toggleFullscreen}
+              className="text-white hover:text-blue-300 transition-colors ml-1"
+              title="Pantalla completa"
+            >
+              {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />}
+            </button>
+          </div>
         </div>
 
         <p className="text-blue-300/60 text-sm mt-3 text-center">
