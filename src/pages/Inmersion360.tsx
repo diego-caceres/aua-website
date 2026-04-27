@@ -19,17 +19,30 @@ const Inmersion360 = () => {
   const [cssFullscreen, setCssFullscreen] = useState(false);
   const [gyroActive, setGyroActive] = useState(false);
   const [gyroSupported, setGyroSupported] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
 
   useEffect(() => {
     const mainContent = document.querySelector("main");
     if (mainContent) mainContent.scrollTo({ top: 0, behavior: "smooth" });
     setGyroSupported("DeviceOrientationEvent" in window);
+
+    // Lock to portrait so gyroscope tilting doesn't rotate the page layout
+    const orient = screen.orientation as ScreenOrientation & { lock?: (o: OrientationLockType) => Promise<void> };
+    orient.lock?.("portrait").catch(() => {});
+    return () => { orient.unlock?.(); };
   }, []);
 
-  // Keep ref in sync and trigger Three.js resize when CSS fullscreen changes
+  // Keep ref in sync, hide navbar, and trigger Three.js resize when CSS fullscreen changes
   useEffect(() => {
     cssFullscreenRef.current = cssFullscreen;
+    const header = document.querySelector("header");
+    if (header instanceof HTMLElement) {
+      header.style.display = cssFullscreen ? "none" : "";
+    }
     window.dispatchEvent(new Event("resize"));
+    return () => {
+      if (header instanceof HTMLElement) header.style.display = "";
+    };
   }, [cssFullscreen]);
 
   useEffect(() => {
@@ -122,10 +135,16 @@ const Inmersion360 = () => {
     const onMeta = () => setDuration(video.duration);
     const onPlay = () => { setIsPlaying(true); setStarted(true); };
     const onPause = () => setIsPlaying(false);
+    const onWaiting = () => setIsBuffering(true);
+    const onPlaying = () => setIsBuffering(false);
+    const onCanPlay = () => setIsBuffering(false);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("loadedmetadata", onMeta);
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
+    video.addEventListener("waiting", onWaiting);
+    video.addEventListener("playing", onPlaying);
+    video.addEventListener("canplay", onCanPlay);
 
     // Render loop
     let raf: number;
@@ -144,16 +163,21 @@ const Inmersion360 = () => {
     animate();
 
     // Resize — handles window resize, native fullscreen, and CSS fullscreen
+    // Debounced to avoid flickering during iOS orientation-change transitions
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const onResize = () => {
-      const w = container.clientWidth;
-      const isFs =
-        !!document.fullscreenElement ||
-        !!(document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement ||
-        cssFullscreenRef.current;
-      const h = isFs ? window.innerHeight : Math.round(w * (9 / 16));
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const w = container.clientWidth;
+        const isFs =
+          !!document.fullscreenElement ||
+          !!(document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement ||
+          cssFullscreenRef.current;
+        const h = isFs ? window.innerHeight : Math.round(w * (9 / 16));
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }, 120);
     };
     window.addEventListener("resize", onResize);
     document.addEventListener("fullscreenchange", onResize);
@@ -161,6 +185,7 @@ const Inmersion360 = () => {
 
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(resizeTimer);
       renderer.domElement.removeEventListener("pointerdown", onPointerDown);
       renderer.domElement.removeEventListener("pointermove", onPointerMove);
       renderer.domElement.removeEventListener("pointerup", onPointerUp);
@@ -172,6 +197,9 @@ const Inmersion360 = () => {
       video.removeEventListener("loadedmetadata", onMeta);
       video.removeEventListener("play", onPlay);
       video.removeEventListener("pause", onPause);
+      video.removeEventListener("waiting", onWaiting);
+      video.removeEventListener("playing", onPlaying);
+      video.removeEventListener("canplay", onCanPlay);
       renderer.dispose();
       video.pause();
       video.removeAttribute("src");
@@ -292,11 +320,22 @@ const Inmersion360 = () => {
             {cssFullscreen && (
               <button
                 onClick={toggleFullscreen}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+                className="absolute top-4 right-4 z-50 w-12 h-12 rounded-full bg-black/70 flex items-center justify-center text-white hover:bg-black/90 transition-colors"
+                style={{ transform: "translateZ(0)" }}
                 title="Salir de pantalla completa"
               >
-                <Minimize size={20} />
+                <Minimize size={22} />
               </button>
+            )}
+
+            {/* Buffering spinner */}
+            {started && isBuffering && (
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none z-40"
+                style={{ transform: "translateZ(0)" }}
+              >
+                <div className="w-14 h-14 rounded-full border-4 border-white/30 border-t-white animate-spin" />
+              </div>
             )}
 
             {!started && (
@@ -312,7 +351,10 @@ const Inmersion360 = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3 px-4 py-2 bg-black/60 shrink-0">
+          <div
+            className="flex items-center gap-3 px-4 py-2 bg-black/60 shrink-0"
+            style={{ transform: "translateZ(0)" }}
+          >
             <button
               onClick={togglePlay}
               className="text-white hover:text-blue-300 transition-colors"
