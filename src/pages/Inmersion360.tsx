@@ -295,7 +295,7 @@ const Inmersion360 = () => {
           </Link>
         </div>
 
-        <h1 className="text-4xl font-bold mb-2 border-l-4 border-blue-400 pl-3">
+        <h1 className="text-2xl md:text-4xl font-bold mb-2 border-l-4 border-blue-400 pl-3">
           Acompañanos a explorar el fondo del mar en apnea!
         </h1>
         <p className="text-blue-200 mb-8 pl-4">
@@ -352,7 +352,7 @@ const Inmersion360 = () => {
 
           {/* Controls */}
           <div
-            className="flex items-center gap-3 px-4 py-2 bg-black/60 shrink-0"
+            className="flex items-center gap-3 pl-4 pr-6 py-2 bg-black/60 shrink-0"
             style={{ transform: "translateZ(0)" }}
           >
             <button
