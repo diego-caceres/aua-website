@@ -10,11 +10,13 @@ const Inmersion360 = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const gyroEnabledRef = useRef(false);
   const alphaOffsetRef = useRef<number | null>(null);
+  const cssFullscreenRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [started, setStarted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [cssFullscreen, setCssFullscreen] = useState(false);
   const [gyroActive, setGyroActive] = useState(false);
   const [gyroSupported, setGyroSupported] = useState(false);
 
@@ -24,16 +26,26 @@ const Inmersion360 = () => {
     setGyroSupported("DeviceOrientationEvent" in window);
   }, []);
 
+  // Keep ref in sync and trigger Three.js resize when CSS fullscreen changes
+  useEffect(() => {
+    cssFullscreenRef.current = cssFullscreen;
+    window.dispatchEvent(new Event("resize"));
+  }, [cssFullscreen]);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Hidden video element as texture source
+    // Video element — must be in the DOM or iOS Safari suspends playback
     const video = document.createElement("video");
     video.src = video360Url;
     video.crossOrigin = "anonymous";
     video.loop = true;
     video.playsInline = true;
+    video.setAttribute("webkit-playsinline", "");
+    video.style.cssText =
+      "position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;";
+    document.body.appendChild(video);
     videoRef.current = video;
 
     // Renderer
@@ -99,15 +111,10 @@ const Inmersion360 = () => {
       if (!gyroEnabledRef.current) return;
       const { alpha, beta } = e;
       if (alpha === null || beta === null) return;
-
-      // Calibrate on first reading so view starts from current direction
       if (alphaOffsetRef.current === null) alphaOffsetRef.current = alpha;
-
       lon = -(alpha - alphaOffsetRef.current);
-      // beta: 0 = flat, 90 = upright portrait → shift so upright = lat 0
       lat = Math.max(-85, Math.min(85, -(beta - 90)));
     };
-
     window.addEventListener("deviceorientation", onDeviceOrientation);
 
     // Video event listeners
@@ -136,18 +143,21 @@ const Inmersion360 = () => {
     };
     animate();
 
-    // Resize — handles window resize and fullscreen transitions
+    // Resize — handles window resize, native fullscreen, and CSS fullscreen
     const onResize = () => {
       const w = container.clientWidth;
-      const h = document.fullscreenElement
-        ? window.innerHeight
-        : Math.round(w * (9 / 16));
+      const isFs =
+        !!document.fullscreenElement ||
+        !!(document as Document & { webkitFullscreenElement?: Element }).webkitFullscreenElement ||
+        cssFullscreenRef.current;
+      const h = isFs ? window.innerHeight : Math.round(w * (9 / 16));
       renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
     };
     window.addEventListener("resize", onResize);
     document.addEventListener("fullscreenchange", onResize);
+    document.addEventListener("webkitfullscreenchange", onResize);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -157,6 +167,7 @@ const Inmersion360 = () => {
       window.removeEventListener("deviceorientation", onDeviceOrientation);
       window.removeEventListener("resize", onResize);
       document.removeEventListener("fullscreenchange", onResize);
+      document.removeEventListener("webkitfullscreenchange", onResize);
       video.removeEventListener("timeupdate", onTimeUpdate);
       video.removeEventListener("loadedmetadata", onMeta);
       video.removeEventListener("play", onPlay);
@@ -165,6 +176,7 @@ const Inmersion360 = () => {
       video.pause();
       video.removeAttribute("src");
       video.load();
+      if (document.body.contains(video)) document.body.removeChild(video);
     };
   }, []);
 
@@ -179,12 +191,10 @@ const Inmersion360 = () => {
       gyroEnabledRef.current = false;
       alphaOffsetRef.current = null;
       setGyroActive(false);
-      if (containerRef.current?.querySelector("canvas")) {
-        (containerRef.current.querySelector("canvas") as HTMLElement).style.cursor = "grab";
-      }
+      const canvas = containerRef.current?.querySelector("canvas") as HTMLElement | null;
+      if (canvas) canvas.style.cursor = "grab";
       return;
     }
-    // iOS 13+ requires explicit permission from a user gesture
     if (
       typeof DeviceOrientationEvent !== "undefined" &&
       typeof (DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> }).requestPermission === "function"
@@ -192,23 +202,46 @@ const Inmersion360 = () => {
       const permission = await (DeviceOrientationEvent as unknown as { requestPermission: () => Promise<string> }).requestPermission();
       if (permission !== "granted") return;
     }
-    alphaOffsetRef.current = null; // recalibrate on next reading
+    alphaOffsetRef.current = null;
     gyroEnabledRef.current = true;
     setGyroActive(true);
-    if (containerRef.current?.querySelector("canvas")) {
-      (containerRef.current.querySelector("canvas") as HTMLElement).style.cursor = "default";
-    }
+    const canvas = containerRef.current?.querySelector("canvas") as HTMLElement | null;
+    if (canvas) canvas.style.cursor = "default";
   };
 
   const toggleFullscreen = () => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
-    if (!document.fullscreenElement) {
-      wrapper.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
+
+    if (isFullscreen) {
+      // Exit — native or CSS
+      const doc = document as Document & {
+        webkitExitFullscreen?: () => void;
+        webkitFullscreenElement?: Element;
+      };
+      if (doc.fullscreenElement || doc.webkitFullscreenElement) {
+        (doc.exitFullscreen ?? doc.webkitExitFullscreen)?.call(doc);
+      } else {
+        setCssFullscreen(false);
+      }
       setIsFullscreen(false);
+      return;
+    }
+
+    // Enter — try native first, fall back to CSS overlay
+    const el = wrapper as HTMLElement & { webkitRequestFullscreen?: () => Promise<void> };
+    const requestFs = el.requestFullscreen ?? el.webkitRequestFullscreen;
+    if (requestFs) {
+      requestFs.call(el).then(() => {
+        setIsFullscreen(true);
+      }).catch(() => {
+        // Native failed (e.g. iOS) — use CSS overlay
+        setCssFullscreen(true);
+        setIsFullscreen(true);
+      });
+    } else {
+      setCssFullscreen(true);
+      setIsFullscreen(true);
     }
   };
 
@@ -243,9 +276,17 @@ const Inmersion360 = () => {
             : "Inmersión en 360° - Haz clic y arrastra para explorar la inmersión en todas direcciones."}
         </p>
 
-        <div ref={wrapperRef} className="rounded-xl overflow-hidden shadow-2xl bg-black">
-          <div className="relative">
-            <div ref={containerRef} className="w-full" />
+        {/* Wrapper: native fullscreen element, or CSS overlay on iOS */}
+        <div
+          ref={wrapperRef}
+          className={`bg-black ${
+            cssFullscreen
+              ? "fixed inset-0 z-[9999] flex flex-col"
+              : "rounded-xl overflow-hidden shadow-2xl"
+          }`}
+        >
+          <div className={`relative ${cssFullscreen ? "flex-1" : ""}`}>
+            <div ref={containerRef} className="w-full h-full" />
 
             {!started && (
               <div
@@ -260,7 +301,7 @@ const Inmersion360 = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3 px-3 py-2 bg-black/60">
+          <div className="flex items-center gap-3 px-3 py-2 bg-black/60 shrink-0">
             <button
               onClick={togglePlay}
               className="text-white hover:text-blue-300 transition-colors"
