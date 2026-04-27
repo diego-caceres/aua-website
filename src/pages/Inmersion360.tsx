@@ -288,6 +288,17 @@ const Inmersion360 = () => {
           <div className={`relative ${cssFullscreen ? "flex-1" : ""}`}>
             <div ref={containerRef} className="w-full h-full" />
 
+            {/* Exit button — top-right corner, only in CSS fullscreen */}
+            {cssFullscreen && (
+              <button
+                onClick={toggleFullscreen}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+                title="Salir de pantalla completa"
+              >
+                <Minimize size={20} />
+              </button>
+            )}
+
             {!started && (
               <div
                 className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer"
@@ -301,7 +312,7 @@ const Inmersion360 = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3 px-3 py-2 bg-black/60 shrink-0">
+          <div className="flex items-center gap-3 px-4 py-2 bg-black/60 shrink-0">
             <button
               onClick={togglePlay}
               className="text-white hover:text-blue-300 transition-colors"
