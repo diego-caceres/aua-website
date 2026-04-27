@@ -28,3 +28,5 @@ dist-ssr
 CLAUDE.md
 CONTACT_FORM_SETUP.md
 notes.txt
+upload-r2.mjs
+set-cors-r2.mjs
