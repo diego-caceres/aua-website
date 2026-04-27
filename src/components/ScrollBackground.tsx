@@ -32,17 +32,17 @@ const ScrollBackground = () => {
     b: Math.round(lightBlue.b + (darkBlue.b - lightBlue.b) * scrollProgress)
   };
 
-  // Fish positions based on scroll
-  const fish1X = 50 + Math.sin(scrollY * 0.001) * 30;
+  // Fish positions based on scroll — capped at 88% so they never extend beyond the right edge
+  const fish1X = Math.min(50 + Math.sin(scrollY * 0.001) * 30, 88);
   const fish1Y = 20 + Math.cos(scrollY * 0.0008) * 15;
-  const fish2X = 80 + Math.sin(scrollY * 0.0012 + Math.PI) * 25;
+  const fish2X = Math.min(80 + Math.sin(scrollY * 0.0012 + Math.PI) * 25, 88);
   const fish2Y = 60 + Math.cos(scrollY * 0.001 + Math.PI) * 20;
-  const fish3X = 20 + Math.sin(scrollY * 0.0015 + Math.PI/2) * 35;
+  const fish3X = Math.min(20 + Math.sin(scrollY * 0.0015 + Math.PI/2) * 35, 88);
   const fish3Y = 80 + Math.cos(scrollY * 0.0009 + Math.PI/2) * 10;
 
   return (
     <div 
-      className="fixed inset-0 -z-10 transition-colors duration-300"
+      className="fixed inset-0 -z-10 overflow-hidden transition-colors duration-300"
       style={{
         background: `linear-gradient(135deg, 
           rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b}) 0%, 

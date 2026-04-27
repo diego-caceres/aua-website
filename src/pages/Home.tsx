@@ -11,7 +11,7 @@ const Home = () => {
   }, []);
   return (
     <div className="text-white relative">
-      <div className="relative h-[28rem] md:h-[32rem] overflow-hidden">
+      <div className="relative min-h-[28rem] md:min-h-[32rem] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -21,7 +21,7 @@ const Home = () => {
           }}
         ></div>
         <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-6 md:px-12">
+          <div className="container mx-auto px-6 md:px-12 py-10">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
               Asociación Uruguaya de Apneistas
             </h1>
@@ -37,12 +37,6 @@ const Home = () => {
               >
                 Únete a la AUA <ExternalLink size={18} />
               </a>
-              <Link
-                to="/about"
-                className="inline-block border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 text-center"
-              >
-                Conocé más
-              </Link>
               <Link
                 to="/inmersion-360"
                 className="inline-flex items-center gap-2 border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300"

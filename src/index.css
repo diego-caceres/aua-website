@@ -5,6 +5,10 @@
 /* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply font-sans;
   }

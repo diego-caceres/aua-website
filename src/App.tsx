@@ -23,7 +23,7 @@ function AppContent() {
       <Header />
       <div className="flex flex-grow overflow-hidden">
         {isHomePage && <Sidebar />}
-        <main className="flex-grow overflow-y-auto relative z-10 flex flex-col">
+        <main className="flex-grow overflow-y-auto overflow-x-hidden relative z-10 flex flex-col">
           <div className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
