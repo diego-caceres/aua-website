@@ -6,7 +6,7 @@ export interface DirectiveMember {
 
 export const titulares: DirectiveMember[] = [
   { name: "Facundo Yañez", role: "Presidente", photo: "/images/directiva/facu.jpg" },
-  { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpg" },
+  { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpeg" },
   { name: "Lucia Puentes", role: "Tesorero/a", photo: "/images/directiva/lucia.jpg" },
 ];
 

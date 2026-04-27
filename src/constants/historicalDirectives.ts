@@ -12,7 +12,7 @@ export const historicalDirectives: Directive[] = [
     year: 2026,
     titulares: [
       { name: "Facundo Yañez", role: "Presidente", photo: "/images/directiva/facu.jpg" },
-      { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpg" },
+      { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpeg" },
       { name: "Lucia Puentes", role: "Tesorero/a", photo: "/images/directiva/lucia.jpg" },
     ],
     suplentes: [
@@ -29,11 +29,11 @@ export const historicalDirectives: Directive[] = [
     year: 2025,
     titulares: [
       { name: "Facundo Yañez", role: "Presidente", photo: "/images/directiva/facu.jpg" },
-      { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpg" },
+      { name: "Eugenia Alcaraz", role: "Secretario/a", photo: "/images/directiva/euge.jpeg" },
       { name: "Ana Elisa Röhrdanz", role: "Tesorero/a" },
     ],
     suplentes: [
-      { name: "Nombre Apellido", role: "Presidente Suplente" },
+      { name: "Lucia Puentes", role: "Presidente Suplente", photo: "/images/directiva/lucia.jpg" },
       { name: "Nombre Apellido", role: "Secretario/a Suplente" },
       { name: "Nombre Apellido", role: "Tesorero/a Suplente" },
     ],
