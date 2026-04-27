@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import { Link } from "react-router-dom";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Video } from "lucide-react";
 import { imageSections } from "../constants/imageSections";
 import { joinAUALink } from "../constants/info";
 
@@ -42,6 +42,12 @@ const Home = () => {
                 className="inline-block border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 text-center"
               >
                 Conocé más
+              </Link>
+              <Link
+                to="/inmersion-360"
+                className="inline-flex items-center gap-2 border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300"
+              >
+                <Video size={20} /> Inmersión 360°
               </Link>
             </div>
           </div>

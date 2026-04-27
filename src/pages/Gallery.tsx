@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Play } from "lucide-react";
 import { imageSections } from "../constants/imageSections";
 import ImageModal from "../components/ImageModal";
 
@@ -35,6 +36,26 @@ const Gallery = () => {
         <h1 className="text-4xl font-bold mb-8 border-l-4 border-blue-400 pl-3">
           Galería Completa
         </h1>
+
+        <Link
+          to="/inmersion-360"
+          className="flex items-center gap-4 mb-10 p-5 rounded-xl bg-blue-900/60 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/60 hover:bg-blue-800/60 transition-all duration-300 group"
+        >
+          <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
+            <Play size={24} className="text-blue-300 ml-1" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-white group-hover:text-blue-200 transition-colors duration-300">
+              Inmersión en 360°
+            </h2>
+            <p className="text-blue-300/80 text-sm">
+              Explorá una inmersión completa en video esférico filmado con Insta360
+            </p>
+          </div>
+          <span className="ml-auto text-blue-400 group-hover:text-blue-300 transition-colors duration-300 text-sm font-medium">
+            Ver video →
+          </span>
+        </Link>
 
         {Object.entries(imageSections).map(([sectionId, section]) => (
           <section key={sectionId} className="mb-16">

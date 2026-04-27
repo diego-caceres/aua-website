@@ -11,6 +11,7 @@ import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Activities from "./pages/Activities";
 import HistoricalDirectives from "./pages/HistoricalDirectives";
+import Inmersion360 from "./pages/Inmersion360";
 
 function AppContent() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function AppContent() {
               <Route path="/about" element={<About />} />
               <Route path="/activities" element={<Activities />} />
               <Route path="/directivas-anteriores" element={<HistoricalDirectives />} />
+              <Route path="/inmersion-360" element={<Inmersion360 />} />
             </Routes>
           </div>
           <MobileFooter />

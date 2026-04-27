@@ -8,3 +8,5 @@ export const actasAsambleasLink =
   "https://drive.google.com/drive/u/2/folders/1Ibm1iKaSFaPNFykF7Ddi7GMwDaYu4EFR";
 
 export const contactEmail = "contacto.aidauruguay@gmail.com";
+
+export const video360Url = "https://pub-1386cc36ea0f46b4b6bcd3a9f53fa42e.r2.dev/Nirvana-360.MP4";
