@@ -16,7 +16,7 @@ export const historicalDirectives: Directive[] = [
       { name: "Lucia Puentes", role: "Tesorero/a", photo: "/images/directiva/lupe.jpg" },
     ],
     suplentes: [
-      { name: "César Arambillete", role: "Presidente Suplente", photo: "/images/directiva/cesar.webp" },
+      { name: "César Arambillete", role: "Presidente Suplente", photo: "/images/directiva/cesar.jpeg" },
       { name: "Federico Langguth", role: "Secretario/a Suplente", photo: "/images/directiva/fede.jpeg" },
       { name: "Ana Elisa Röhrdanz", role: "Tesorero/a Suplente", photo: "/images/directiva/ana.jpg" },
     ],
@@ -36,7 +36,7 @@ export const historicalDirectives: Directive[] = [
       { name: "Lucia Puentes", role: "Presidente Suplente", photo: "/images/directiva/lupe.jpg" },
       { name: "Federico Langguth", role: "Secretario/a Suplente", photo: "/images/directiva/fede.jpeg" },
       { name: "Alejandra Acosta", role: "Tesorero/a Suplente", photo: "/images/directiva/ale.jpeg" },
-      { name: "César Arambillete", role: "Tesorero/a Suplente", photo: "/images/directiva/cesar.webp" },
+      { name: "César Arambillete", role: "Tesorero/a Suplente", photo: "/images/directiva/cesar.jpeg" },
     ],
     sindicatura: [
       { name: "Mateo Yañez", role: "Sindicatura Titular" },

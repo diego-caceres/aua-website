@@ -11,7 +11,7 @@ export const titulares: DirectiveMember[] = [
 ];
 
 export const suplentes: DirectiveMember[] = [
-  { name: "César Arambillete", role: "Presidente Suplente", photo: "/images/directiva/cesar.webp" },
+  { name: "César Arambillete", role: "Presidente Suplente", photo: "/images/directiva/cesar.jpeg" },
   { name: "Federico Langguth", role: "Secretario/a Suplente", photo: "/images/directiva/fede.jpeg" },
   { name: "Ana Elisa Röhrdanz", role: "Tesorero/a Suplente", photo: "/images/directiva/ana.jpg" },
 ];
