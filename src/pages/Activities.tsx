@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BackButton from "../components/BackButton";
+import SlidesModal from "../components/SlidesModal";
 
 const Activities = () => {
+  const [slidesOpen, setSlidesOpen] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
+    <>
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
         <BackButton to="/" />
@@ -24,6 +28,12 @@ const Activities = () => {
             <p className="text-lg leading-relaxed mb-4">
               Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.
             </p>
+            <button
+              onClick={() => setSlidesOpen(true)}
+              className="mt-2 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
+            >
+              Próximos Eventos
+            </button>
           </section>
 
           <section className="bg-white/5 rounded-lg p-8">
@@ -53,6 +63,8 @@ const Activities = () => {
         </div>
       </div>
     </div>
+    {slidesOpen && <SlidesModal onClose={() => setSlidesOpen(false)} />}
+    </>
   );
 };
 

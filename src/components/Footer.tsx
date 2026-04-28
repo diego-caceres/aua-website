@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Instagram, Mail } from "lucide-react";
 import ContactModal from "./ContactModal";
+import DiceBrand from "./diego-caceres/DiceBrand";
 
 const Footer = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -9,18 +9,11 @@ const Footer = () => {
     <>
     <footer className="hidden md:block bg-blue-950 text-white py-4 mt-auto">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            {/* <img
-              src="/WhatsApp_Image_2025-07-27_at_11.06.30.jpg"
-              alt="AUA Logo"
-              className="h-12 mb-2"
-            /> */}
-            <p className="text-sm text-blue-300">
-              © {new Date().getFullYear()} Asociación Uruguaya de Apneistas
-            </p>
-          </div>
-          <div className="flex space-x-6 mb-4 md:mb-0">
+        <div className="relative flex items-center justify-center">
+          <p className="absolute left-0 text-sm text-blue-300">
+            © {new Date().getFullYear()} Asociación Uruguaya de Apneistas
+          </p>
+          <div className="flex space-x-6">
             <a
               href="https://www.instagram.com/aida_uruguay"
               target="_blank"
@@ -29,7 +22,6 @@ const Footer = () => {
             >
               <Instagram size={24} />
             </a>
-
             <button
               onClick={() => setContactModalOpen(true)}
               className="hover:text-blue-300 transition-colors"
@@ -37,13 +29,13 @@ const Footer = () => {
               <Mail size={24} />
             </button>
           </div>
-          <div>
-            <Link
-              to="/legales"
-              className="text-sm text-blue-300 hover:underline"
-            >
-              Términos legales
-            </Link>
+          <div className="absolute right-0">
+            <DiceBrand 
+              href="https://www.diegocaceres.dev/" 
+              textColor="#e2e8f0"                  
+              separatorColor="#f97316"                                                    
+              diceColor="#f97316" 
+            />
           </div>
         </div>
       </div>

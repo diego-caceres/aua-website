@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import { Link } from "react-router-dom";
 import { ExternalLink, Video } from "lucide-react";
 import { imageSections } from "../constants/imageSections";
 import { joinAUALink } from "../constants/info";
+import SlidesModal from "../components/SlidesModal";
 
 const Home = () => {
+  const [slidesOpen, setSlidesOpen] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -121,9 +124,15 @@ const Home = () => {
                   Eventos
                 </h3>
                 <p className="mb-4">
-                  Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.                   
+                  Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.
                 </p>
                 <p className="mb-4">Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.</p>
+                <button
+                  onClick={() => setSlidesOpen(true)}
+                  className="mt-2 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
+                >
+                  Próximos Eventos
+                </button>
               </div>
 
               <div>
@@ -221,6 +230,7 @@ const Home = () => {
           </div>
         </section>
       </div>
+    {slidesOpen && <SlidesModal onClose={() => setSlidesOpen(false)} />}
     </div>
   );
 };

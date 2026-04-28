@@ -38,5 +38,9 @@ export const historicalDirectives: Directive[] = [
       { name: "Alejandra Acosta", role: "Tesorero/a Suplente", photo: "/images/directiva/ale.jpeg" },
       { name: "César Arambillete", role: "Tesorero/a Suplente", photo: "/images/directiva/cesar.webp" },
     ],
+    sindicatura: [
+      { name: "Mateo Yañez", role: "Sindicatura Titular" },
+      { name: "Francis Batista", role: "Sindicatura Suplente" },
+    ],
   },
 ];
