@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { estatutosLink, actasAsambleasLink } from "../constants/info";
 import DirectivaSection from "../components/DirectivaSection";
+import BackButton from "../components/BackButton";
 
 const About = () => {
   useEffect(() => {
@@ -11,15 +11,7 @@ const About = () => {
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
-        <div>
-          <Link
-            to="/"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
-            style={{ pointerEvents: 'auto' }}
-          >
-            ← Inicio
-          </Link>
-        </div>
+        <BackButton to="/" />
 
         <h1 className="text-4xl font-bold mb-8 border-l-4 border-blue-400 pl-3">
           Sobre Nosotros

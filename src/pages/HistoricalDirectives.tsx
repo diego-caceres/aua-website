@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { historicalDirectives, Directive } from "../constants/historicalDirectives";
 import { DirectiveMember } from "../constants/directive";
+import BackButton from "../components/BackButton";
 
 const getInitials = (name: string) =>
   name
@@ -13,21 +13,21 @@ const getInitials = (name: string) =>
     .slice(0, 2);
 
 const MemberAvatar = ({ member }: { member: DirectiveMember }) => (
-  <div className="flex flex-col items-center gap-2">
-    <div className="w-16 h-16 rounded-full overflow-hidden ring-1 ring-blue-300/25 flex-shrink-0">
+  <div className="flex flex-col items-center gap-3 transition-transform duration-300 hover:-translate-y-1">
+    <div className="w-24 h-24 rounded-full overflow-hidden ring-1 ring-blue-300/30 hover:ring-blue-300/60 transition-colors duration-300 flex-shrink-0">
       {member.photo ? (
         <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
       ) : (
-        <div className="w-full h-full bg-blue-900/70 flex items-center justify-center">
-          <span className="font-heading text-white/60 text-sm leading-none">
+        <div className="w-full h-full bg-blue-900/80 flex items-center justify-center">
+          <span className="font-heading text-white/70 text-xl leading-none">
             {getInitials(member.name)}
           </span>
         </div>
       )}
     </div>
-    <div className="text-center max-w-[8rem]">
-      <p className="font-heading text-white/80 text-sm leading-snug">{member.name}</p>
-      <p className="font-sans text-white/35 text-xs mt-0.5">{member.role}</p>
+    <div className="text-center max-w-[10rem]">
+      <p className="font-heading text-white text-base leading-snug">{member.name}</p>
+      <p className="font-sans text-white/45 text-xs tracking-wide mt-1">{member.role}</p>
     </div>
   </div>
 );
@@ -61,12 +61,16 @@ const DirectiveYear = ({ directive }: { directive: Directive }) => (
       ))}
     </div>
 
-    <GroupDivider label="Sindicatura" />
-    <div className="flex flex-wrap justify-center gap-x-10 gap-y-6">
-      {directive.sindicatura.map((m) => (
-        <MemberAvatar key={m.role} member={m} />
-      ))}
-    </div>
+    {directive.sindicatura && directive.sindicatura.length > 0 && (
+      <>
+        <GroupDivider label="Sindicatura" />
+        <div className="flex flex-wrap justify-center gap-x-10 gap-y-6">
+          {directive.sindicatura.map((m) => (
+            <MemberAvatar key={m.role} member={m} />
+          ))}
+        </div>
+      </>
+    )}
   </div>
 );
 
@@ -79,15 +83,7 @@ const HistoricalDirectives = () => {
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
-        <div>
-          <Link
-            to="/about"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
-            style={{ pointerEvents: "auto" }}
-          >
-            ← Sobre Nosotros
-          </Link>
-        </div>
+        <BackButton to="/about" />
 
         <h1 className="text-4xl font-bold mb-2 border-l-4 border-blue-400 pl-3">
           Directivas Anteriores

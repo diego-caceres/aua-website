@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import * as THREE from "three";
+import BackButton from "../components/BackButton";
 import { Play, Pause, Maximize, Minimize, Compass } from "lucide-react";
 import { video360Url } from "../constants/info";
 
@@ -285,15 +285,7 @@ const Inmersion360 = () => {
   return (
     <div className="text-white relative">
       <div className="container mx-auto px-6 py-12">
-        <div>
-          <Link
-            to="/gallery"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300 mb-8 md:mb-0 md:fixed md:left-6 md:top-36 md:z-20 md:bg-black md:bg-opacity-40 md:px-3 md:py-1 md:rounded-full md:shadow-lg"
-            style={{ pointerEvents: "auto" }}
-          >
-            ← Galería
-          </Link>
-        </div>
+        <BackButton to="/gallery" />
 
         <h1 className="text-2xl md:text-4xl font-bold mb-2 border-l-4 border-blue-400 pl-3">
           Acompañanos a explorar el fondo del mar en apnea!
