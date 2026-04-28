@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone } from "lucide-react";
 import ContactModal from "./ContactModal";
+import DiceBrand from "./diego-caceres/DiceBrand";
 
 const MobileFooter = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -34,16 +34,16 @@ const MobileFooter = () => {
               <Mail size={20} />
             </button>
           </div>
-          <div className="text-center">
-            <p className="text-xs text-blue-300 mb-1">
+          <div className="text-center space-y-2">
+            <p className="text-xs text-blue-300">
               © {new Date().getFullYear()} Asociación Uruguaya de Apneistas
             </p>
-            <Link
-              to="/legales"
-              className="text-xs text-blue-300 hover:underline"
-            >
-              Términos legales
-            </Link>
+            <DiceBrand
+              href="https://www.diegocaceres.dev/"
+              textColor="#e2e8f0"
+              separatorColor="#f97316"
+              diceColor="#f97316"
+            />
           </div>
         </div>
       </div>
