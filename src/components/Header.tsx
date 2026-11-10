@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu as MenuIcon, Mail } from "lucide-react";
-import { joinAUALink } from "../constants/info";
+import { joinAUALink, aidaCoursesLink } from "../constants/info";
 import ContactModal from "./ContactModal";
 
 const scrollToSection = (sectionId: string) => {
@@ -131,6 +131,17 @@ const Header = () => {
                 >
                   Asociate
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={aidaCoursesLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
+                >
+                  Cursos y Certificaciones
+                </a>
               </li>
               <li>
                 <button

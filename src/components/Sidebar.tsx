@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { aidaCoursesLink } from "../constants/info";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -85,6 +86,16 @@ const Sidebar = () => {
             >
               Galería
             </button>
+          </li>
+          <li>
+            <a
+              href={aidaCoursesLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
+            >
+              Cursos y Certificaciones
+            </a>
           </li>
         </ul>
       </nav>
