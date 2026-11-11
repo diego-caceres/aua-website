@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { imageSections } from '../constants/imageSections';
+import { imageSections, thumb } from '../constants/imageSections';
 
 const images = [  
   {
@@ -30,7 +30,7 @@ const ImageCarousel = () => {
   };
   return <div className="relative w-full h-96 my-8">
       <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center rounded-lg overflow-hidden" style={{
-      backgroundImage: `url(${images[currentIndex].url})`
+      backgroundImage: `url(${thumb(images[currentIndex].url)})`
     }}>
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950 to-transparent opacity-70"></div>
         <div className="absolute bottom-0 left-0 w-full p-6 text-white">

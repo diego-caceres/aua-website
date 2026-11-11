@@ -1,8 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import ScrollBackground from "./components/ScrollBackground";
 import MobileFooter from "./components/MobileFooter";
@@ -14,15 +13,11 @@ import HistoricalDirectives from "./pages/HistoricalDirectives";
 import Inmersion360 from "./pages/Inmersion360";
 
 function AppContent() {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
-
   return (
     <div className="flex flex-col h-screen relative">
       <ScrollBackground />
       <Header />
       <div className="flex flex-grow overflow-hidden">
-        {isHomePage && <Sidebar />}
         <main className="flex-grow overflow-y-auto overflow-x-hidden relative z-10 flex flex-col">
           <div className="flex-grow">
             <Routes>
@@ -35,9 +30,9 @@ function AppContent() {
             </Routes>
           </div>
           <MobileFooter />
+          <Footer />
         </main>
       </div>
-      <Footer />
     </div>
   );
 }

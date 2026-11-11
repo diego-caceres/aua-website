@@ -1,163 +1,130 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu as MenuIcon, Mail } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
+import { ExternalLink, Menu as MenuIcon, Mail, X } from "lucide-react";
 import { joinAUALink, aidaCoursesLink } from "../constants/info";
 import ContactModal from "./ContactModal";
 
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  const mainContent = document.querySelector("main");
-  if (element && mainContent) {
-    // Get the actual header height including mobile menu if open
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.offsetHeight : 80;
-    const elementTop = element.offsetTop - headerHeight - 20; // Extra padding
-    mainContent.scrollTo({ top: elementTop, behavior: "smooth" });
-  }
-};
+const navLinks = [
+  { to: "/gallery", label: "Galería" },
+  { to: "/about", label: "Sobre Nosotros" },
+  { to: "/activities", label: "Actividades" },
+];
 
-const scrollToTop = () => {
-  const mainContent = document.querySelector("main");
-  if (mainContent) {
-    mainContent.scrollTo({ top: 0, behavior: "smooth" });
-  }
-};
+const desktopLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `py-1 border-b-2 transition-colors duration-300 ${
+    isActive
+      ? "border-blue-300 text-white"
+      : "border-transparent text-white/80 hover:text-white"
+  }`;
+
+const mobileItemClass =
+  "block w-full text-left py-2.5 px-3 hover:bg-blue-800 rounded transition-colors duration-200";
+
+const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `${mobileItemClass} ${isActive ? "bg-blue-800/70 font-medium" : ""}`;
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
     <>
-    <header className="bg-blue-950 text-white">
-      <div className="px-10  py-3 flex justify-between items-center">
+    <header className="bg-blue-950 text-white flex-shrink-0">
+      <div className="px-6 lg:px-10 py-3 flex justify-between items-center gap-6">
+        <Link to="/" className="flex flex-col items-start flex-shrink-0">
+          <img
+            src="/images/aua_white.png"
+            alt="Asociación Uruguaya de Apneistas"
+            className="h-10 lg:h-14"
+          />
+          <p className="text-xs text-blue-300 mt-0.5">Filial AIDA Uruguay</p>
+        </Link>
         <div className="flex items-center">
-          <Link to="/" className="flex items-center">
-            <div className="flex items-start md:items-center flex-col">
-              <img
-                src="/images/aua_white.png"
-                alt="AUA Logo"
-                className="h-10 md:h-14 mr-2"
-              />
-              <p className="text-xs text-blue-300">Filial AIDA Uruguay</p>
-              <h1 className="text-xl font-semibold hidden">
-                Asociación Uruguaya de Apneistas
-              </h1>
-            </div>
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <nav className="hidden md:flex space-x-8 mr-6 items-center">
-            <Link
-              to="/gallery"
-              className="text-white hover:text-blue-300 transition-colors duration-300"
-            >
-              Galería
-            </Link>
-            <Link
-              to="/about"
-              className="text-white hover:text-blue-300 transition-colors duration-300"
-            >
-              Sobre Nosotros
-            </Link>
-            <Link
-              to="/activities"
-              className="text-white hover:text-blue-300 transition-colors duration-300"
-            >
-              Actividades
-            </Link>
-            <Link
-              to={joinAUALink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-300 transition-colors duration-300"
-            >
-              Asociate
-            </Link>
-
+          <nav className="hidden lg:flex gap-8 items-center whitespace-nowrap">
+            {navLinks.map(({ to, label }) => (
+              <NavLink key={to} to={to} className={desktopLinkClass}>
+                {label}
+              </NavLink>
+            ))}
             <button
               onClick={() => setContactModalOpen(true)}
-              className="border border-white/30 hover:border-blue-300 hover:text-blue-300 text-white/80 px-4 py-1.5 rounded-md transition-all duration-300 mr-2 flex gap-2 items-center text-sm"
+              className="py-1 text-white/80 hover:text-white transition-colors duration-300 flex gap-2 items-center"
             >
               <Mail size={18} /> Contacto
             </button>
+            <a
+              href={joinAUALink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-semibold px-4 py-2 rounded-md transition-colors duration-300"
+            >
+              Asociate <ExternalLink size={15} />
+            </a>
           </nav>
 
           <button
-            className="md:hidden text-white"
+            className="lg:hidden text-white p-2 -mr-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            <MenuIcon size={24} />
+            {mobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
           </button>
         </div>
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-blue-900 px-4 py-2">
-          <nav>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/gallery"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Galería
-                </Link>
+      <div
+        id="mobile-menu"
+        className={`lg:hidden grid bg-blue-900 transition-[grid-template-rows,visibility] duration-300 ease-out ${
+          mobileMenuOpen ? "grid-rows-[1fr] visible" : "grid-rows-[0fr] invisible"
+        }`}
+      >
+        <nav className="overflow-hidden">
+          <ul className="px-4 py-3 space-y-1">
+            {navLinks.map(({ to, label }) => (
+              <li key={to}>
+                <NavLink to={to} onClick={closeMenu} className={mobileLinkClass}>
+                  {label}
+                </NavLink>
               </li>
-              <li>
-                <Link
-                  to="/about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Sobre Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/activities"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Actividades
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={joinAUALink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Asociate
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={aidaCoursesLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Cursos y Certificaciones
-                </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    setContactModalOpen(true);
-                  }}
-                  className="block w-full text-left py-1 px-2 hover:bg-blue-800 rounded"
-                >
-                  Contacto
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+            ))}
+            <li>
+              <a
+                href={aidaCoursesLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className={mobileItemClass}
+              >
+                Cursos y Certificaciones
+              </a>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  closeMenu();
+                  setContactModalOpen(true);
+                }}
+                className={mobileItemClass}
+              >
+                Contacto
+              </button>
+            </li>
+            <li className="pt-2">
+              <a
+                href={joinAUALink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2.5 px-3 rounded-md transition-colors duration-200"
+              >
+                Asociate <ExternalLink size={15} />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
     {contactModalOpen && <ContactModal onClose={() => setContactModalOpen(false)} />}
     </>

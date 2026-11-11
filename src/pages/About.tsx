@@ -18,37 +18,36 @@ const About = () => {
         </h1>
 
         <div className="space-y-8">
-          <section className="bg-white/5 rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestra Historia</h2>
-            <p className="text-lg leading-relaxed">
-              La Asociación Uruguaya de Apneistas (AUA) es la filial oficial de
-              AIDA Uruguay, dedicada a promover y desarrollar el deporte de la
-              apnea en nuestro país.
-            </p>
-          </section>
+          <p className="max-w-[60ch] text-xl md:text-2xl leading-relaxed text-white/95">
+            La Asociación Uruguaya de Apneistas (AUA) es la filial oficial de
+            AIDA Uruguay, dedicada a promover y desarrollar el deporte de la
+            apnea en nuestro país.
+          </p>
 
-          <section className="bg-white/5 rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestra Misión</h2>
-            <p className="text-lg leading-relaxed">
-              Fomentar la práctica segura de la apnea y crear una comunidad de apneistas comprometidos con el
-              deporte y el medio ambiente marino.
-            </p>
-          </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 pt-8 border-t border-white/15">
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-white">Nuestra Misión</h2>
+              <p className="text-lg leading-relaxed text-white/90">
+                Fomentar la práctica segura de la apnea y crear una comunidad de apneistas comprometidos con el
+                deporte y el medio ambiente marino.
+              </p>
+            </section>
 
-          <section className="bg-white/5 rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4 text-white/90">Nuestros Valores</h2>
-            <ul className="text-lg leading-relaxed space-y-2">
-              <li>• Seguridad ante todo</li>
-              <li>• Respeto por el medio ambiente</li>
-              <li>• Formación continua</li>
-              <li>• Compañerismo y apoyo mutuo</li>
-            </ul>
-          </section>
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-white">Nuestros Valores</h2>
+              <ul className="text-lg leading-relaxed text-white/90 space-y-2">
+                <li>• Seguridad ante todo</li>
+                <li>• Respeto por el medio ambiente</li>
+                <li>• Formación continua</li>
+                <li>• Compañerismo y apoyo mutuo</li>
+              </ul>
+            </section>
+          </div>
 
           <DirectivaSection />
 
           <section className="bg-white/5 rounded-lg p-8">
-            <h2 className="text-xl font-semibold mb-4 text-white/90">Documentos Importantes</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Documentos Importantes</h2>
             <div className="space-y-3">
               <div>
                 <a

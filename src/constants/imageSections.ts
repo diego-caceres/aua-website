@@ -40,3 +40,8 @@ export const imageSections = {
     ],
   },
 };
+
+// Lightweight (max 1200px) JPEG version of a gallery image, generated into
+// /public/gallery/thumbs/. Use it everywhere except the full-size modal.
+export const thumb = (src: string) =>
+  src.replace(/^\/gallery\//, "/gallery/thumbs/").replace(/\.[^.]+$/, ".jpg");
