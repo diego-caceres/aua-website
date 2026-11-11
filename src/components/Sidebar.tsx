@@ -1,103 +1,100 @@
-import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { ExternalLink } from "lucide-react";
 import { aidaCoursesLink } from "../constants/info";
 
+const sections = [
+  { id: "inicio", label: "Inicio" },
+  { id: "sobre-nosotros", label: "Sobre la AUA" },
+  { id: "apnea", label: "¿Qué es la Apnea?" },
+  { id: "actividades", label: "Actividades" },
+  { id: "galeria", label: "Galería" },
+];
+
+// Distance from the top of the scroll area at which a section counts as "current"
+const ACTIVE_OFFSET = 140;
+const SCROLL_PADDING = 32;
+
 const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
   const mainContent = document.querySelector("main");
-  if (element && mainContent) {
-    // Get the actual header height including mobile menu if open
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.offsetHeight : 80;
-    const elementTop = element.offsetTop - headerHeight - 20; // Extra padding
-    mainContent.scrollTo({ top: elementTop, behavior: "smooth" });
-  }
-};
-
-const scrollToTop = () => {
-  const mainContent = document.querySelector("main");
-  if (mainContent) {
+  if (!mainContent) return;
+  if (sectionId === "inicio") {
     mainContent.scrollTo({ top: 0, behavior: "smooth" });
+    return;
   }
+  const element = document.getElementById(sectionId);
+  if (!element) return;
+  const top =
+    mainContent.scrollTop +
+    element.getBoundingClientRect().top -
+    mainContent.getBoundingClientRect().top -
+    SCROLL_PADDING;
+  mainContent.scrollTo({ top, behavior: "smooth" });
 };
 
+const itemClass = (active: boolean) =>
+  `block w-full text-left -ml-px pl-4 py-1.5 text-sm border-l transition-colors duration-200 ${
+    active
+      ? "border-blue-300 text-white font-medium"
+      : "border-transparent text-white/60 hover:text-white"
+  }`;
+
+// Section index for the home page: sits transparently beside the content
+// (the scroll container is <main>, so sticky positioning is relative to it).
 const Sidebar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isGalleryPage = location.pathname === "/gallery";
+  const [activeId, setActiveId] = useState("inicio");
 
-  const handleSectionClick = (sectionId: string) => {
-    if (isGalleryPage) {
-      navigate(`/#${sectionId}`);
-    } else {
-      scrollToSection(sectionId);
-    }
-  };
+  useEffect(() => {
+    const mainContent = document.querySelector("main");
+    if (!mainContent) return;
 
-  const handleHomeClick = () => {
-    if (isGalleryPage) {
-      navigate("/");
-    } else {
-      scrollToTop();
-    }
-  };
+    const updateActive = () => {
+      const mainTop = mainContent.getBoundingClientRect().top;
+      let current = "inicio";
+      for (const { id } of sections) {
+        const element = document.getElementById(id);
+        if (
+          element &&
+          element.getBoundingClientRect().top - mainTop <= ACTIVE_OFFSET
+        ) {
+          current = id;
+        }
+      }
+      // The last section may be too short to ever reach the offset line
+      const atBottom =
+        mainContent.scrollTop + mainContent.clientHeight >=
+        mainContent.scrollHeight - 2;
+      setActiveId(atBottom ? sections[sections.length - 1].id : current);
+    };
+
+    updateActive();
+    mainContent.addEventListener("scroll", updateActive, { passive: true });
+    return () => mainContent.removeEventListener("scroll", updateActive);
+  }, []);
 
   return (
-    <aside className="hidden md:block w-56 bg-blue-900 text-white p-6 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
-      <nav>
-        <ul className="space-y-4">
-          <li>
-            <button
-              onClick={handleHomeClick}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Inicio
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => handleSectionClick("sobre-nosotros")}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Sobre la AUA
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => handleSectionClick("apnea")}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              ¿Qué es la Apnea?
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => handleSectionClick("actividades")}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Actividades
-            </button>
-          </li>
-         
-          <li>
-            <button
-              onClick={() => handleSectionClick("galeria")}
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Galería
-            </button>
-          </li>
-          <li>
-            <a
-              href={aidaCoursesLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-left py-2 px-4 hover:bg-blue-800 rounded-md transition-colors duration-200 border-l-4 border-transparent hover:border-blue-300"
-            >
-              Cursos y Certificaciones
-            </a>
-          </li>
+    <aside className="hidden lg:block w-44 flex-shrink-0">
+      <nav className="sticky top-12" aria-label="Secciones de la página">
+        <ul className="border-l border-white/15">
+          {sections.map(({ id, label }) => (
+            <li key={id}>
+              <button
+                onClick={() => scrollToSection(id)}
+                aria-current={activeId === id ? "true" : undefined}
+                className={itemClass(activeId === id)}
+              >
+                {label}
+              </button>
+            </li>
+          ))}
         </ul>
+        <a
+          href={aidaCoursesLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center gap-1.5 pl-4 text-sm text-blue-200 hover:text-white transition-colors duration-200"
+        >
+          Cursos y Certificaciones <ExternalLink size={14} />
+        </a>
       </nav>
     </aside>
   );

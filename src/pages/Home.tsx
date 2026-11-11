@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import { Link } from "react-router-dom";
-import { ExternalLink, Video } from "lucide-react";
-import { imageSections } from "../constants/imageSections";
+import { CalendarDays, ExternalLink, GraduationCap, Trophy, Users, Video } from "lucide-react";
+import { imageSections, thumb } from "../constants/imageSections";
 import { joinAUALink } from "../constants/info";
 import SlidesModal from "../components/SlidesModal";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   const [slidesOpen, setSlidesOpen] = useState(false);
@@ -14,48 +15,64 @@ const Home = () => {
   }, []);
   return (
     <div className="text-white relative">
-      <div className="relative min-h-[28rem] md:min-h-[32rem] overflow-hidden">
+      <div
+        id="inicio"
+        className="relative flex items-center min-h-[34rem] md:min-h-[78vh]"
+      >
+        {/* Photo fades out at the bottom so it melts into the animated background */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "url('https://uploadthingy.s3.us-west-1.amazonaws.com/c4AkcrZFsUv7y3Z3sBkNga/WhatsApp_Image_2025-07-27_at_13.34.05.jpg')",
-            filter: "brightness(0.6)",
+            maskImage: "linear-gradient(to bottom, black 62%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 62%, transparent 100%)",
           }}
-        ></div>
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-6 md:px-12 py-10">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              Asociación Uruguaya de Apneistas
-            </h1>
-            <p className="text-xl md:text-2xl max-w-3xl">
-              Promoviendo la apnea recreativa y de competición en Uruguay
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a
-                href={joinAUALink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-xl"
-              >
-                Únete a la AUA <ExternalLink size={18} />
-              </a>
-              <Link
-                to="/inmersion-360"
-                className="inline-flex items-center gap-2 border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300"
-              >
-                <Video size={20} /> Inmersión 360°
-              </Link>
-            </div>
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('https://uploadthingy.s3.us-west-1.amazonaws.com/c4AkcrZFsUv7y3Z3sBkNga/WhatsApp_Image_2025-07-27_at_13.34.05.jpg')",
+            }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-950/55 to-blue-950/25"></div>
+        </div>
+        <div className="relative container mx-auto px-6 md:px-12 pt-12 pb-24 md:pb-32">
+          <p className="text-sm md:text-base text-blue-200 mb-4">
+            Filial oficial AIDA en Uruguay
+          </p>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-5 max-w-4xl leading-[1.05]">
+            Asociación Uruguaya de Apneistas
+          </h1>
+          <p className="text-xl md:text-2xl max-w-2xl text-white/90">
+            Promoviendo la apnea recreativa y de competición en Uruguay
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <a
+              href={joinAUALink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-xl"
+            >
+              Únete a la AUA <ExternalLink size={18} />
+            </a>
+            <Link
+              to="/inmersion-360"
+              className="inline-flex items-center justify-center gap-2 border border-white/40 hover:border-blue-400 hover:text-blue-300 text-white/90 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300"
+            >
+              <Video size={20} /> Inmersión 360°
+            </Link>
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 md:px-12 pt-4 pb-16 lg:flex lg:gap-16">
+        <Sidebar />
+        <div className="min-w-0 flex-1">
         <section id="sobre-nosotros" className="mb-16">
           <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-400 pl-3">
             Sobre la AUA
           </h2>
-          <div className="bg-white/5 p-6 rounded-lg">
+          <div className="max-w-[65ch] text-base md:text-lg leading-relaxed text-white/90">
             <p className="mb-4">
               La Asociación Uruguaya de Apneistas (AUA) es una organización sin fines de lucro dedicada a promocionar la apnea recreativa y de competición en Uruguay.
             </p>
@@ -66,7 +83,7 @@ const Home = () => {
               Nuestro objetivo es acercar este fascinante deporte al público general, organizando actividades, talleres, charlas y eventos para todos los niveles, y fomentando la participación de los atletas en diversas instancias (tanto nacionales como internacionales) para que la disciplina siga creciendo en nuestro país.
             </p>
           </div>
-          <div className="text-center mt-6">
+          <div className="mt-6">
             <Link
               to="/about"
               className="inline-block border border-white/30 hover:border-blue-400 hover:text-blue-300 text-white/80 px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-300"
@@ -79,7 +96,7 @@ const Home = () => {
           <h2 className="text-2xl font-semibold mb-5 pb-2 border-b border-white/20">
             ¿Qué es la Apnea?
           </h2>
-          <div className="bg-white/5 p-6 rounded-lg mb-6">
+          <div className="max-w-[65ch] text-base md:text-lg leading-relaxed text-white/90 mb-6">
             <p className="mb-4">
               La apnea es la práctica de contener la respiración bajo el agua,
               explorando los límites del cuerpo humano en un entorno acuático.
@@ -101,66 +118,56 @@ const Home = () => {
             </p>
           </div>
           <ImageCarousel />
-          <div className="text-center mt-6">
-            <Link
-              to={joinAUALink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-xl"
-            >
-              ¡Únete a la AUA! <ExternalLink size={18} />
-            </Link>
-          </div>
         </section>
 
         <section id="actividades" className="mb-16">
           <h2 className="text-2xl font-semibold mb-5 pb-2 border-b border-white/20">
             Nuestras Actividades
           </h2>
-          <div className="bg-white/5 p-6 rounded-lg">
-            <div className="flex flex-col gap-2 mb-6">
-              <div>
-                <h3 className="text-lg font-semibold mb-3 text-white">
-                  Eventos
-                </h3>
-                <p className="mb-4">
-                  Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.
-                </p>
-                <p className="mb-4">Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.</p>
-                <button
-                  onClick={() => setSlidesOpen(true)}
-                  className="mt-2 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
-                >
-                  Próximos Eventos
-                </button>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 mt-8">
+            <div>
+              <CalendarDays size={28} strokeWidth={1.5} className="text-blue-300 mb-3" />
+              <h3 className="text-2xl font-semibold mb-3 text-white">Eventos</h3>
+              <p className="mb-4 text-white/90 leading-relaxed">
+                Organizamos encuentros, charlas y talleres para compartir experiencias, intercambiar opiniones y seguir aprendiendo del deporte y del medio acuático y la vida que lo habita. Siendo parte de AUA, tenés acceso exclusivo a estos eventos.
+              </p>
+              <p className="mb-4 text-white/90 leading-relaxed">Además, organizamos actividades para acercar el deporte al público en general y convocar a interesados a que puedan sumarse a la apnea con nosotros.</p>
+              <button
+                onClick={() => setSlidesOpen(true)}
+                className="mt-2 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
+              >
+                Próximos Eventos
+              </button>
+            </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-3 text-white">Competiciones</h3>
-                <p className="mb-4">
-                  Siendo parte de AUA, tendrás la posibilidad de participar en competiciones nacionales e internacionales (¡incluidos campeonatos mundiales!), representando a Uruguay.
-                </p>
-                <p className="mb-4">
-                  ¡Estate atento para que sigamos mejorando las marcas del país!
-                </p>
-              </div>
+            <div>
+              <Trophy size={28} strokeWidth={1.5} className="text-blue-300 mb-3" />
+              <h3 className="text-2xl font-semibold mb-3 text-white">Competiciones</h3>
+              <p className="mb-4 text-white/90 leading-relaxed">
+                Siendo parte de AUA, tendrás la posibilidad de participar en competiciones nacionales e internacionales (¡incluidos campeonatos mundiales!), representando a Uruguay.
+              </p>
+              <p className="text-white/90 leading-relaxed">
+                ¡Estate atento para que sigamos mejorando las marcas del país!
+              </p>
+            </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-3 text-white">Intercambio</h3>
-                <p className="mb-4">
-                  Formá parte de un extenso grupo de apneistas de todos los niveles con quienes podrás compartir asiduamente, intercambiar experiencias, compartir opiniones respecto de tus entrenamientos, el equipo, tu viaje a través de la apnea, para que sigamos haciendo crecer la comunidad juntos.
-                </p>
-              </div>
+            <div>
+              <Users size={28} strokeWidth={1.5} className="text-blue-300 mb-3" />
+              <h3 className="text-2xl font-semibold mb-3 text-white">Intercambio</h3>
+              <p className="text-white/90 leading-relaxed">
+                Formá parte de un extenso grupo de apneistas de todos los niveles con quienes podrás compartir asiduamente, intercambiar experiencias, compartir opiniones respecto de tus entrenamientos, el equipo, tu viaje a través de la apnea, para que sigamos haciendo crecer la comunidad juntos.
+              </p>
+            </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-3 text-white">Contacto</h3>
-                <p className="mb-4">
-                  Accedé a contactos con escuelas locales e internaciones. Consultanos!
-                </p>
-              </div>              
+            <div>
+              <GraduationCap size={28} strokeWidth={1.5} className="text-blue-300 mb-3" />
+              <h3 className="text-2xl font-semibold mb-3 text-white">Contacto</h3>
+              <p className="text-white/90 leading-relaxed">
+                Accedé a contactos con escuelas locales e internaciones. Consultanos!
+              </p>
             </div>
           </div>
-          <div className="text-center mt-6">
+          <div className="mt-10">
             <Link
               to="/activities"
               className="inline-block border border-white/30 hover:border-blue-400 hover:text-blue-300 text-white/80 px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-300"
@@ -205,19 +212,25 @@ const Home = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(imageSections).map(([sectionId, section]) => (
-              <div
+              <Link
                 key={sectionId}
-                className="overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm"
+                to={`/gallery#${sectionId}`}
+                className="group block overflow-hidden rounded-lg bg-black bg-opacity-30 backdrop-blur-sm"
               >
-                <img
-                  src={section.images[0]}
-                  alt={section.title}
-                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                />
-                <div className="p-4">
-                  <p className="text-lg">{section.title}</p>
+                <div className="overflow-hidden">
+                  <img
+                    src={thumb(section.images[0])}
+                    alt={section.title}
+                    loading="lazy"
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-              </div>
+                <div className="p-4">
+                  <p className="text-lg group-hover:text-blue-200 transition-colors duration-300">
+                    {section.title}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-6">
@@ -229,6 +242,24 @@ const Home = () => {
             </Link>
           </div>
         </section>
+
+        <section className="pt-12 pb-4 border-t border-white/15">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Sumate a la comunidad
+          </h2>
+          <p className="max-w-[55ch] text-base md:text-lg leading-relaxed text-white/90 mb-8">
+            No importa tu nivel ni tu experiencia: si te llama el agua, hay un lugar para vos en la AUA.
+          </p>
+          <a
+            href={joinAUALink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-xl"
+          >
+            Únete a la AUA <ExternalLink size={18} />
+          </a>
+        </section>
+        </div>
       </div>
     {slidesOpen && <SlidesModal onClose={() => setSlidesOpen(false)} />}
     </div>
