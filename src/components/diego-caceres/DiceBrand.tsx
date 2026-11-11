@@ -18,7 +18,7 @@ export default function DiceBrand({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="font-mono text-sm font-medium inline-flex items-center gap-5"
+      className="font-mono text-xs font-medium inline-flex items-center gap-3"
       style={{ color: textColor }}
     >
       <span>

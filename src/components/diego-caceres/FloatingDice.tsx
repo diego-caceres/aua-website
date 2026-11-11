@@ -1,4 +1,4 @@
-const SIZE = 16;
+const SIZE = 12;
 const HALF = SIZE / 2;
 
 type DotPos = [number, number];
@@ -22,10 +22,10 @@ function Face({ dots, transform, color }: { dots: DotPos[]; transform: string; c
         transform,
         backfaceVisibility: 'hidden',
         border: `1px solid ${color}`,
-        borderRadius: 4,
+        borderRadius: 3,
         display: 'grid',
         gridTemplate: 'repeat(3, 1fr) / repeat(3, 1fr)',
-        padding: 3,
+        padding: 2,
         boxSizing: 'border-box',
         backgroundColor: 'rgba(255,255,255,0.03)',
       }}
@@ -62,7 +62,7 @@ export default function FloatingDice({ color = 'var(--color-accent-1)' }: Floati
         }
         @keyframes floatDice {
           0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-3px); }
+          50%       { transform: translateY(-2px); }
         }
       `}</style>
 
